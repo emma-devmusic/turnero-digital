@@ -1,0 +1,218 @@
+{
+    "locales": [
+        { 
+            "id": "123456789",
+            "name": "Estética",
+            "availability": [
+                {
+                    "id": "123451932",
+                    "title": "Reserva 1",
+                    "start": "Tue Dec 12 2023 19:00:00 GMT-0300 (hora estándar de Argentina)",
+                    "end": "Tue Dec 12 2023 20:00:00 GMT-0300 (hora estándar de Argentina)",
+                    "user": {
+                        "id": "No Registrado",
+                        "name": "Usuario 1"
+                    }
+                },
+                {
+                    "id": "14519342",
+                    "title": "Reserva 2",
+                    "start": "Tue Dec 15 2023 14:00:00 GMT-0300 (hora estándar de Argentina)",
+                    "end": "Tue Dec 15 2023 16:00:00 GMT-0300 (hora estándar de Argentina)",
+                    "user": {
+                        "id": "No Registrado",
+                        "name": "Usuario 2"
+                    }
+                },
+                {
+                    "id": "12345142",
+                    "title": "Reserva 3",
+                    "start": "Tue Dec 11 2023 21:00:00 GMT-0300 (hora estándar de Argentina)",
+                    "end": "Tue Dec 11 2023 23:00:00 GMT-0300 (hora estándar de Argentina)",
+                    "user": {
+                        "id": "No Registrado",
+                        "name": "Usuario 3"
+                    }
+                }
+            ], 
+            "services": [
+                {
+                    "id": "1234twe",
+                    "name": "Servicio 1"
+                },
+                {
+                    "id": "1234twe",
+                    "name": "Servicio 1"
+                },
+                {
+                    "id": "1234twe",
+                    "name": "Servicio 1"
+                }
+            ]
+        },
+        {
+            "id": "987654321",
+            "name": "Peluquería",
+            "availability": [ 
+                {
+                    "id": "123451932",
+                    "title": "Reserva 1",
+                    "start": "Tue Dec 14 2023 19:00:00 GMT-0300 (hora estándar de Argentina)",
+                    "end": "Tue Dec 14 2023 20:00:00 GMT-0300 (hora estándar de Argentina)",
+                    "user": {
+                        "id": "No Registrado",
+                        "name": "Usuario 1"
+                    }
+                },
+                {
+                    "id": "14519342",
+                    "title": "Reserva 2",
+                    "start": "Tue Dec 12 2023 14:00:00 GMT-0300 (hora estándar de Argentina)",
+                    "end": "Tue Dec 12 2023 16:00:00 GMT-0300 (hora estándar de Argentina)",
+                    "user": {
+                        "id": "No Registrado",
+                        "name": "Usuario 2"
+                    }
+                },
+                {
+                    "id": "12345142",
+                    "title": "Reserva 3",
+                    "start": "Tue Dec 13 2023 21:00:00 GMT-0300 (hora estándar de Argentina)",
+                    "end": "Tue Dec 13 2023 23:00:00 GMT-0300 (hora estándar de Argentina)",
+                    "user": {
+                        "id": "No Registrado",
+                        "name": "Usuario 3"
+                    }
+                }
+            ],
+            "services": [
+                {
+                    "id": "1234twe",
+                    "name": "Servicio 1"
+                },
+                {
+                    "id": "1234twe",
+                    "name": "Servicio 2"
+                },
+                {
+                    "id": "1234twe",
+                    "name": "Servicio 3"
+                }
+            ]
+        },
+        {
+            "id": "126437859",
+            "name": "Odontólogo",
+            "availability": [ 
+                {
+                    "id": "123451932",
+                    "title": "Reserva 1",
+                    "start": "Tue Dec 14 2023 19:00:00 GMT-0300 (hora estándar de Argentina)",
+                    "end": "Tue Dec 14 2023 20:00:00 GMT-0300 (hora estándar de Argentina)",
+                    "user": {
+                        "id": "No Registrado",
+                        "name": "Usuario 1"
+                    }
+                },
+                {
+                    "id": "14519342",
+                    "title": "Reserva 2",
+                    "start": "Tue Dec 12 2023 14:00:00 GMT-0300 (hora estándar de Argentina)",
+                    "end": "Tue Dec 12 2023 16:00:00 GMT-0300 (hora estándar de Argentina)",
+                    "user": {
+                        "id": "No Registrado",
+                        "name": "Usuario 2"
+                    }
+                },
+                {
+                    "id": "12345142",
+                    "title": "Reserva 3",
+                    "start": "Tue Dec 12 2023 21:00:00 GMT-0300 (hora estándar de Argentina)",
+                    "end": "Tue Dec 12 2023 23:00:00 GMT-0300 (hora estándar de Argentina)",
+                    "user": {
+                        "id": "No Registrado",
+                        "name": "Usuario 3"
+                    }
+                }
+            ],
+            "services": [
+                {
+                    "id": "1234twe",
+                    "name": "Servicio 1"
+                },
+                {
+                    "id": "1234twe",
+                    "name": "Servicio 2"
+                },
+                {
+                    "id": "1234twe",
+                    "name": "Servicio 3"
+                }
+            ]
+        },
+        {
+            "id": "1264378478",
+            "name": "Barbero",
+            "availability": [ 
+                {
+                    "id": "123451932",
+                    "title": "Reserva 1",
+                    "start": "Tue Dec 12 2023 19:00:00 GMT-0300 (hora estándar de Argentina)",
+                    "end": "Tue Dec 12 2023 20:00:00 GMT-0300 (hora estándar de Argentina)",
+                    "user": {
+                        "id": "No Registrado",
+                        "name": "Usuario 1"
+                    }
+                },
+                {
+                    "id": "14519342",
+                    "title": "Reserva 2",
+                    "start": "Tue Dec 12 2023 14:00:00 GMT-0300 (hora estándar de Argentina)",
+                    "end": "Tue Dec 12 2023 16:00:00 GMT-0300 (hora estándar de Argentina)",
+                    "user": {
+                        "id": "No Registrado",
+                        "name": "Usuario 2"
+                    }
+                },
+                {
+                    "id": "12345142",
+                    "title": "Reserva 3",
+                    "start": "Tue Dec 12 2023 21:00:00 GMT-0300 (hora estándar de Argentina)",
+                    "end": "Tue Dec 12 2023 23:00:00 GMT-0300 (hora estándar de Argentina)",
+                    "user": {
+                        "id": "No Registrado",
+                        "name": "Usuario 3"
+                    }
+                }
+            ],
+            "services": [
+                {
+                    "id": "1234twe",
+                    "name": "Servicio 1"
+                },
+                {
+                    "id": "1234twe",
+                    "name": "Servicio 2"
+                },
+                {
+                    "id": "1234twe",
+                    "name": "Servicio 3"
+                }
+            ]
+        }
+    ],
+    "usuarios": [
+        {
+            "id": "123456",
+            "name": "Fulano de Tal",
+            "email": "fulanodetal@correo.com",
+            "password": "123456"
+        },
+        {
+            "id": "456789",
+            "name": "Otro Fulano",
+            "email": "otrofulano@correo.com",
+            "password": "123456"
+        }
+    ]
+}

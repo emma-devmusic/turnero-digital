@@ -1,0 +1,39 @@
+{
+  "name": "turner",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@types/react-big-calendar": "^1.8.7",
+    "date-fns": "^2.30.0",
+    "localforage": "^1.10.0",
+    "match-sorter": "^6.3.1",
+    "react": "^18.2.0",
+    "react-big-calendar": "^1.8.5",
+    "react-datepicker": "^4.24.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.20.1",
+    "sort-by": "^1.2.0",
+    "sweetalert2": "^11.10.1",
+    "uid": "^2.0.2"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.37",
+    "@types/react-datepicker": "^4.19.4",
+    "@types/react-dom": "^18.2.15",
+    "@typescript-eslint/eslint-plugin": "^6.10.0",
+    "@typescript-eslint/parser": "^6.10.0",
+    "@vitejs/plugin-react": "^4.2.0",
+    "eslint": "^8.53.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.4",
+    "typescript": "^5.2.2",
+    "vite": "^5.0.0"
+  }
+}

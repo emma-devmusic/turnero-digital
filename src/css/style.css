@@ -1,0 +1,110 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+.no-scroll-y {
+    overflow-y: hidden;
+}
+
+#root {
+    background-position: center center;
+    background-size: cover;
+    background-image: url('../img/backgroundCalendar.jpg');
+    height: 100%;
+    min-height: 100vh;
+    z-index: 0;
+}
+
+#filter-bar {
+    max-width: 600px;
+}
+
+.btn-local {
+    width: 150px;
+    height: 80px;
+    margin: 1rem;
+}
+#app {
+    padding: 2rem;
+}
+#app, #login-register-container {
+    margin-top: 2rem;
+}
+
+.none {
+    display: none !important;
+}
+
+
+.selected {
+    background-color: #004a99;
+    color: white;
+}
+.selected:hover {
+    background-color: transparent;
+    color: #007bff;
+}
+div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
+    background-color: #007bff !important;
+}
+
+.root {
+    width: 100%;
+}
+
+
+#view-3 form{
+    max-width: 500px;
+}
+
+.step-on {
+    background-color: #004186;
+}
+
+.hr {
+    width: 100%;
+}
+
+
+
+/* 
+
+================================================================================
+LOGIN FORM
+================================================================================
+
+*/
+
+
+#login-form, #register-form {
+    width: 100%;
+    max-width: 500px;
+}
+
+.icon-form {
+    color: grey;
+}
+
+
+#ModalCenter {
+    z-index: 9999999 !important;
+}
+
+
+
+
+/* 
+
+================================================================================
+React Date Picker
+================================================================================
+
+*/
+
+/* .react-datepicker__input-container input {
+    text-align: center;
+    border: 1px solid lightgray;
+    border-radius: 4px;
+} */
