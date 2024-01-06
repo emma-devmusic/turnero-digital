@@ -1,4 +1,4 @@
-import { shopInitialState, ShopState } from '.';
+import { shopInitialState, ShopState } from '..';
 
 type ShopAction = { type: 'select' | 'unselect' , payload: ShopState | null}
 
@@ -16,7 +16,8 @@ export const shopReducer = (state: ShopState, action: ShopAction ) => {
         case 'unselect':
             return {
                 ...state,
-                ...shopInitialState
+                ...shopInitialState,
+                selected: false
             }
         
         default:

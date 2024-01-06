@@ -1,5 +1,5 @@
-import { AuthState } from "./interfaces";
-import { authInitialState } from './AuthContext';
+import { AuthState } from "../interfaces";
+import { authInitialState } from '../AuthContext';
 
 type AuthAction = { type: 'login' | 'logout', payload: AuthState }
 

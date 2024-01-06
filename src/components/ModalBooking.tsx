@@ -1,36 +1,62 @@
+import Modal from "react-modal";
 import { addHours } from 'date-fns';
 import { es } from 'date-fns/locale';
-import { FC, useContext, useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useContext, useEffect, useState } from 'react';
 import DatePicker, {registerLocale} from "react-datepicker";
 import { AvailabilityContext, ShopContext } from '../context';
 import { formValuesFormated, getServiceSelected } from '../helpers';
-import "react-datepicker/dist/react-datepicker.css";
 import { BookingContext } from '../context/BookingContext';
-import { unselectBooking, updateBooking } from '../context/actions/bookingActions';
+import {  updateBooking } from '../context/actions/bookingActions';
+import { DatePickerBooking } from "./DatePickerBooking";
+import "react-datepicker/dist/react-datepicker.css";
+
+type PropsModal = { 
+    modalIsOpen: boolean; 
+    setIsOpen: Dispatch<SetStateAction<boolean>>; 
+};
 
 registerLocale('es', es);
 
 const formValuesInitialState = {
     id: '',
-    price: 0,
+    price: 5000,
     title: '',
     start: new Date(),
     name: '',
-    service: '-',
-    end: addHours(new Date(), 2),
+    service: {
+        id: "1234twexcvbssd",
+        name: "Servicio 1",
+        duration: 1,
+        price: 5000
+    },
+    end: addHours(new Date(), 1),
     user: {
         id: 'No Registrado',
         name: ''
     }
 }
 
-export const Modal: FC = () => {
+const customStyles = {
+    content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        width: '100%',
+        maxWidth: '500px',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)',
+        padding: '.5rem'
+    },
+};
+export const ModalBooking = ({modalIsOpen, setIsOpen}: PropsModal) => {
 
-    const {availabilityState: { selected }, updateAvailability, dispatch } = useContext(AvailabilityContext);
+    const {availabilityState: { selected, availabilities }, updateAvailability, dispatch } = useContext(AvailabilityContext);
     const { shopState:{ services, name } } = useContext(ShopContext);
     const { bookingState, newBooking, dispatchBooking } = useContext(BookingContext)
     const [ isUpdating, setIsUpdating ] = useState(false);
-    const [formValues, setFormValues] = useState<any>(formValuesInitialState)
+    const [formValues, setFormValues] = useState<any>(formValuesInitialState);
+    const [isInvalid, setIsInvalid] = useState('');
 
     const onDateChanged = (event: any, changing: any) => {
         setFormValues({
@@ -40,16 +66,17 @@ export const Modal: FC = () => {
     }
 
     const onInputChanged = ({target} : any) => {
-        const service = getServiceSelected(services, target.value) || selected?.service || bookingState.selected?.service;
-        const variable = { [target.name]: (target.name === 'service') ? service : target.value }
+        let service;
+        if(target.name === 'service')
+        service = getServiceSelected(services, target.value) || selected?.service || bookingState.selected?.service || formValues.price;
         setFormValues({
             ...formValues,
-            ...variable,
-            price: service?.price
+            [target.name]: (target.name === 'service') ? service : target.value,
+            price: service?.price || formValues.price
         })
     }
+    
     const handleSave = () => {
-        console.log(formValues.price)
         if(isUpdating) {
             const updateReserve = formValuesFormated(formValues, 'update');
             if(!!updateReserve.bgColor) {
@@ -57,25 +84,27 @@ export const Modal: FC = () => {
             } else {
                 updateAvailability(updateReserve, dispatch);
             }
-            setIsUpdating(!isUpdating);
+            setIsUpdating(false);
         } else {
             const newReserve = formValuesFormated({...formValues, title: name}, 'new' );
             newBooking(newReserve, dispatchBooking);
         }
-        document.getElementById('closeModal')?.click();
         setFormValues(formValuesInitialState)
+        closeModal()
     }
 
     useEffect(() => {
         setFormValues({
             ...formValues,
-            end: addHours(formValues.start, formValues.service.duration || 1 )
+            end: addHours(formValues.start, formValues.service.duration ),
+            price: formValues.service.price
         })
     },[formValues.start, selected, bookingState.selected, formValues.service])
 
     useEffect( () => {
         if(selected || bookingState.selected){
             const data = {
+                ...formValues,
                 id: selected?.id || bookingState.selected?.id,
                 title: name, // NOMBRE DEL LOCAL
                 price: selected?.price || bookingState.selected?.price,
@@ -96,19 +125,25 @@ export const Modal: FC = () => {
         }
     },[selected, bookingState.selected])
 
-    //********************************************************** */
-    //TODO:
-    // RESOLVER PROBLEMA DE CAMBIO DE SERVICIO
-    //********************************************************** */
+
+    const closeModal = () => {
+        setFormValues(formValuesInitialState)
+        setIsOpen(false)
+        setIsInvalid('');
+    };
+    Modal.setAppElement('#root')
 
     return (
         <>
-            <div className="modal fade" id="ModalCenter" tabIndex={0} role="dialog">
-                <div className="modal-dialog modal-dialog-centered" role="document">
-                    <div className="modal-content">
+            <Modal
+                isOpen={modalIsOpen}
+                onRequestClose={closeModal}
+                style={customStyles}
+            >
+                
                     <div className="modal-header">
                         <h5 className="modal-title" id="exampleModalLongTitle">{ selected ? 'Actualizar' : 'Nueva' } Reserva en {name}</h5>
-                        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                        <button type="button" className="close" data-dismiss="modal" onClick={closeModal}>
                         <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -119,11 +154,26 @@ export const Modal: FC = () => {
                                 <div className="input-group-prepend">
                                     <label className="input-group-text" htmlFor="inputGroupSelect01">Selecciona el Servicio</label>
                                 </div>
-                                <select name='service' onChange={onInputChanged} className="custom-select" id="inputGroupSelect01">
-                                    <option defaultValue={selected?.service?.id || ''}> {`${selected?.service?.name || '-'}`}</option>
-                                    {/* <option defaultValue={''}> - </option> */}
+                                <select 
+                                    name='service' 
+                                    onChange={onInputChanged} 
+                                    className="custom-select" 
+                                    id="inputGroupSelect01"
+                                >
+                                    <option 
+                                        defaultValue={selected?.service?.id || bookingState.selected?.id || formValues.service.id}
+                                    >
+                                        {selected?.service?.name || bookingState.selected?.name || formValues.service.name}
+                                    </option>
                                     {
-                                        services.map( (e,i) => <option value={e.id} key={i}>{e.name}</option> )
+                                        services.map( (e,i) => 
+                                            <option 
+                                                value={e.id} 
+                                                key={i}
+                                            >
+                                                {e.name}
+                                            </option>
+                                        )
                                     }
                                 </select>
                             </div>
@@ -153,42 +203,38 @@ export const Modal: FC = () => {
                                 />
                             </div>
                             <hr />
-                            <div className="form-group mb-2">
-                                <label className='d-block'>Fecha y hora</label>
-                                <DatePicker 
-                                    className='form-control d-block'
-                                    minDate={ formValues.start }
-                                    selected={ formValues.start } 
-                                    onChange={(event: any) => onDateChanged(event, 'start')} 
-                                    dateFormat={'Pp'}
-                                    showTimeSelect
-                                    locale={'es'}
-                                    timeCaption='Hora'
-                                />  
-                            </div>
+                            <DatePickerBooking 
+                                durationService={formValues.service.duration }
+                                formValues={ formValues } 
+                                onDateChanged={ onDateChanged } 
+                                isInvalid={ isInvalid }
+                                setIsInvalid={ setIsInvalid }
+                            />
                             <div className="form-group mb-2">
                                 <label className='d-block'>Fecha y hora fin</label>
                                 <DatePicker 
                                     disabled
-                                    minDate={ formValues.start }
-                                    className='form-control d-block'
+                                    className={'form-control d-block ' + isInvalid}
                                     selected={ formValues.end } 
                                     onChange={(event: any) => onDateChanged(event, 'end')} 
                                     dateFormat={'Pp'}
-                                    showTimeSelect
                                     locale={'es'}
-                                    timeCaption='Hora'
+                                    placeholderText=" - "
                                 />  
                             </div>
                         </form>
                     </div>
                     <div className="modal-footer">
-                        <button className="btn btn-secondary" data-dismiss="modal" id='closeModal'>Cerrar</button>
-                        <button className="btn btn-primary" onClick={handleSave}>{ selected ? 'Actualizar Reserva' : 'Reservar' }</button>
+                        <button className="btn btn-secondary" onClick={closeModal}>Cerrar</button>
+                        <button 
+                            className="btn btn-primary" 
+                            onClick={handleSave}
+                            disabled={!!isInvalid}
+                        >
+                            { selected ? 'Actualizar Reserva' : 'Reservar' }
+                        </button>
                     </div>
-                    </div>
-                </div>
-            </div>
+            </Modal>
         </>
     )
 }

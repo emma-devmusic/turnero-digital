@@ -8,7 +8,7 @@ import { Modal } from "./components/Modal";
 
 export const App = () => {
   
-  const { authState, login } = useContext(AuthContext);
+  const { login } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
   const arrayPublicPath = ['/turnero', '/turnero/step-one', '/turnero/step-two', '/turnero/step-three', '/turnero/step-resume'];
@@ -23,8 +23,8 @@ export const App = () => {
     }
     if( logged ) {
       navigate('/turnero/profile');
-    } else if( noLogged) {
-      navigate('/turnero');
+    } else if( noLogged ) {
+      navigate('/turnero/step-one');
     }
   }, [location.pathname]);
   
@@ -32,9 +32,9 @@ export const App = () => {
     <>
       <Navbar 
         href={ 
-          ( useLocation().pathname !== '/register') 
-          ? 'login' 
-          : 'register' 
+          ( useLocation().pathname === '/login') 
+          ? 'register' 
+          : 'login' 
         } 
       /> 
       <Outlet />

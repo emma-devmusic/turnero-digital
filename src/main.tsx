@@ -4,13 +4,16 @@ import { AuthProvider } from "./context/AuthContext.tsx";
 import { router } from './routes/routes.tsx';
 import './css/style.css';
 import { ShopProvider } from './context/ShopContext.tsx';
+import { BookingProvider } from './context/BookingContext.tsx';
 
 
 const ContextProvider = ({children}: any) => {
     return (
       <AuthProvider>
         <ShopProvider>
+          <BookingProvider>
             {children}
+          </BookingProvider>
         </ShopProvider>
       </AuthProvider> 
     )
@@ -22,7 +25,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <ContextProvider>
       <RouterProvider router={router} />
     </ContextProvider>
-  // </React.StrictMode>
+  // </React.StrictMode> 
   ,
 )
 

@@ -29,7 +29,7 @@
 #app {
     padding: 2rem;
 }
-#app, #login-register-container {
+#login-register-container {
     margin-top: 2rem;
 }
 
@@ -88,13 +88,16 @@ LOGIN FORM
 }
 
 
-#ModalCenter {
+/* #ModalCenter {
     z-index: 9999999 !important;
+} */
+
+
+
+#price {
+    background-color:  white;
+    border: none;
 }
-
-
-
-
 /* 
 
 ================================================================================
@@ -108,3 +111,9 @@ React Date Picker
     border: 1px solid lightgray;
     border-radius: 4px;
 } */
+
+
+
+.ReactModal__Overlay--after-open {
+    z-index: 99 !important;     
+}

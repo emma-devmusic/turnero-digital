@@ -1,5 +1,5 @@
 import { Dispatch } from "react"
-import { ShopAvailability, ShopAvailabilityAction, idReserve } from "."
+import { ShopAvailability, ShopAvailabilityAction, idReserve } from ".."
 
 export const readAvailability = (availibilities: ShopAvailability[], dispatchReserve: Dispatch<ShopAvailabilityAction>) => {
     dispatchReserve({
@@ -26,5 +26,19 @@ export const deleteReserve = ( id: idReserve, dispatchReserve: Dispatch<ShopAvai
     dispatchReserve({
         type: 'deleteReserve',
         payload: id
+    })
+}
+
+export const selectReserve = ( reserve: ShopAvailability, dispatchReserve: Dispatch<ShopAvailabilityAction> ) => {
+    dispatchReserve({
+        type: 'selectReserve',
+        payload: reserve
+    })
+}
+
+export const unselectReserve = ( dispatchReserve: Dispatch<ShopAvailabilityAction> ) => {
+    dispatchReserve({
+        type: 'unselectReserve',
+        payload: null
     })
 }
