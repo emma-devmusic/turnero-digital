@@ -124,8 +124,6 @@ export const ModalBooking = ({modalIsOpen, setIsOpen}: PropsModal) => {
     },[formValues.start, selected, bookingState.selected, formValues.service])
 
     useEffect( () => {
-
-
         if(selected || bookingState.selected){
             const data = {
                 ...formValues,

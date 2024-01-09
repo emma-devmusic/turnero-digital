@@ -27,7 +27,6 @@ export const DatePickerBooking = ({
     const handleCalendarClose = () => {
         let difference = 0;
         datesToExcludes(objTimesToExclude, bookingPerHour).forEach( e =>{
-            console.log('que paso')
             if(differenceInMinutes(e, dateSelected) > 0 && difference === 0){
                 difference = differenceInMinutes(e, dateSelected);
                 const time = minToHoursString(

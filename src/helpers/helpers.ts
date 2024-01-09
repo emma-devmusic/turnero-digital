@@ -96,7 +96,6 @@ export const firstUppercase = (str: string) => {
 export const isWeekday = (date: Date) => {
     const day = getDay(date);
     return day !== 0 
-    // && day !== 6;
 };
 
 
@@ -169,14 +168,12 @@ export const onClickDate = (event: any, arrayAvailabilities: ShopAvailability[])
         }
     }
 }
-
 export const minToHoursString = (minutes: number) => {
     const min = (minutes % 60 === 0) ? '00' : '30';
     const hour = minutesToHours(minutes);
     const string = `${hour}:${min}`;
     return string
 }
-
 export const differenceOfTimeInMin = ( durationService: number, timeToNexBooking: number ) => {
     const minutesService = hoursToMinutes(durationService);
     return minutesService - timeToNexBooking;
@@ -187,7 +184,6 @@ export const formValidate = (form:any) => {
     let emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
     let phoneRegex = /^(?:(?:00)?549?)?0?(?:11|[2368]\d)(?:(?=\d{0,2}15)\d{2})??\d{8}$/g;
     let nameRegex =  /^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ]+(?:\s+[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ]+){1,5}(?:\s+[-\sa-zA-ZáéíóúÁÉÍÓÚüÜñÑ]+)?$/g;
-
     let toCheck = ['email', 'name', 'password', 'phone']
     let arrayErrors:string[] = [];
     let prop:string

@@ -117,3 +117,14 @@ React Date Picker
 .ReactModal__Overlay--after-open {
     z-index: 99 !important;     
 }
+
+
+
+/* 
+-------------------------------
+
+*/
+
+.backgroundImgCalendar {
+    /* background-image: url(../img/backgroundCalendar.jpg); */
+}

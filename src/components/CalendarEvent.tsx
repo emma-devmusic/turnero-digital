@@ -5,7 +5,7 @@ export const CalendarEvent = ({ event } : {event: Event}) => {
     
     return (
         <div
-            className=''
+            className='backgroundImgCalendar'
         >
             <strong>{ service?.name }</strong>
             <i> - { user?.name }</i>
