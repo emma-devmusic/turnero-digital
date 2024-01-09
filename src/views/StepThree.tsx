@@ -1,14 +1,18 @@
 import { useContext, useState } from "react";
 import { BookingContext } from "../context/BookingContext";
 import { useNavigate } from "react-router-dom";
+import { formValidate } from "../helpers";
+import { ErrorsMsgForm } from "../components/ErrorsMsgForm";
 import { ShopContext } from "../context";
 
 export const StepThree = () => {
 
     const { bookingState: { booking } } = useContext(BookingContext);
+    const { shopState } = useContext(ShopContext)
 
     const navigate = useNavigate()
 
+    const [trySend, setTrySend] = useState(false)
     const [formValues, setFormValues] = useState({
         name: '',
         email: '',
@@ -23,18 +27,21 @@ export const StepThree = () => {
     }
     
     const handleSave = (e: any) => {
+        setTrySend(true)
         e.preventDefault();
-        localStorage.setItem('contactInfo', 
-            JSON.stringify( formValues )
-        )
-        navigate('/turnero/step-resume')
+        if(formValidate(formValues).length === 0){
+            localStorage.setItem('contactInfo', 
+                JSON.stringify( formValues )
+            )
+            navigate('/turnero/step-resume')
+        }
     }
 
     return (
         <>
             <div className="hide" id="view-3">
                 {
-                    !(booking.length > 0) 
+                    !(booking.length > 0 && shopState.selected) 
                     ? <h3 className="text-center text-alternative-2 font-weight-normal">Debe completar el paso anterior</h3>
                     : <div id="ocultar-2">
                         <h2 className="text-center mb-2 font-weight-normal">Coloca tus datos</h2>
@@ -47,7 +54,7 @@ export const StepThree = () => {
                                     type="text" 
                                     className="form-control" 
                                     name="name"
-                                    placeholder="Nombre"
+                                    placeholder="Nombre y Apellido"
                                 />
                             </div>
                             <div className="form-group mb-4">
@@ -68,6 +75,9 @@ export const StepThree = () => {
                                     placeholder="Teléfono"
                                 />
                             </div>
+                            {
+                                trySend && formValidate(formValues).map( (msg,i) => <ErrorsMsgForm text={msg} key={i} />)
+                            }
                             <button 
                                 onClick={handleSave}
                                 type="submit" 

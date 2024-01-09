@@ -1,7 +1,7 @@
 import DatePicker from 'react-datepicker';
 import { datesToExcludes, differenceOfTimeInMin, isWeekday, minToHoursString, onClickDate } from '../helpers';
 import { useContext, useEffect, useState } from 'react';
-import { AvailabilityContext } from '../context';
+import { AvailabilityContext, ShopContext } from '../context';
 import { BookingContext } from '../context/BookingContext';
 import { differenceInMinutes} from 'date-fns';
 import Swal from 'sweetalert2';
@@ -16,6 +16,7 @@ export const DatePickerBooking = ({
 }:any) => {
     
     const { availabilityState } = useContext(AvailabilityContext)
+    const { shopState: { bookingPerHour } } = useContext(ShopContext)
     const { bookingState } = useContext(BookingContext)
 
     const [objTimesToExclude, setObjTimesToExclude] = useState([])
@@ -25,12 +26,13 @@ export const DatePickerBooking = ({
 
     const handleCalendarClose = () => {
         let difference = 0;
-        datesToExcludes(objTimesToExclude).forEach( e =>{
+        datesToExcludes(objTimesToExclude, bookingPerHour).forEach( e =>{
+            console.log('que paso')
             if(differenceInMinutes(e, dateSelected) > 0 && difference === 0){
                 difference = differenceInMinutes(e, dateSelected);
                 const time = minToHoursString(
                     differenceOfTimeInMin(durationService,difference)
-                    );
+                );
                 if(differenceOfTimeInMin(durationService, difference) > 0) {
                     setIsInvalid('is-invalid');
                     Swal.fire(
@@ -76,8 +78,8 @@ export const DatePickerBooking = ({
                 timeCaption='Hora'
                 filterDate={isWeekday}
                 filterTime={filterPassedTime}
-                excludeTimes={ datesToExcludes(objTimesToExclude) || [] }
-                placeholderText="Selecciona una fecha disponible"
+                excludeTimes={ datesToExcludes(objTimesToExclude, bookingPerHour) || [] }
+                placeholderText="Selecciona fecha y hora disponible"
             />
         </div>
     )

@@ -6,6 +6,7 @@ import { addHours } from 'date-fns';
 
 export const shopInitialState: ShopState = {
     selected: false,
+    bookingPerHour: 1,
     id: '',
     name: '',
     availability: [],

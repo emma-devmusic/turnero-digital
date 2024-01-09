@@ -2,14 +2,17 @@
     "locales": [
         { 
             "id": "123456789",
+            "bookingPerHour": 3,
             "name": "Estética",
             "availability": [
                 {
+                    "bgColor": "#2778c4",
                     "id": "123451932",
-                    "title": "Reserva 1",
+                    "title": "Estética",
                     "price": 7000,
                     "start": "Fri Jan 12 2024 19:00:00 GMT-0300 (hora estándar de Argentina)",
                     "end": "Fri Jan 12 2024 20:00:00 GMT-0300 (hora estándar de Argentina)",
+                    "desc": "Necesito desocuparme rapido",
                     "service": {
                         "id": "1234twexcvbssd",
                         "name": "Servicio 3",
@@ -20,12 +23,33 @@
                         "id": "No Registrado",
                         "name": "Usuario 1"
                     },
-                    "done": true,
-                    "assist": true
+                    "done": false,
+                    "assist": false
                 },
                 {
-                    "id": "14519342",
-                    "title": "Reserva 2",
+                    "bgColor": "#2778c4",
+                    "id": "1451hfgh9342",
+                    "title": "Estética",
+                    "price": 6000,
+                    "start": "Mon Jan 15 2024 14:00:00 GMT-0300 (hora estándar de Argentina)",
+                    "end": "Mon Jan 15 2024 16:00:00 GMT-0300 (hora estándar de Argentina)",
+                    "service": {
+                        "id": "1234twexcvbsd",
+                        "name": "Servicio 2",
+                        "duration": 2,
+                        "price": 6000
+                    },
+                    "user": {
+                        "id": "No Registrado",
+                        "name": "Usuario 27"
+                    },
+                    "done": false,
+                    "assist": false
+                },
+                { 
+                    "bgColor": "#2778c4",
+                    "id": "14519342sdf",
+                    "title": "Estética",
                     "price": 6000,
                     "start": "Mon Jan 15 2024 14:00:00 GMT-0300 (hora estándar de Argentina)",
                     "end": "Mon Jan 15 2024 16:00:00 GMT-0300 (hora estándar de Argentina)",
@@ -39,10 +63,11 @@
                         "id": "No Registrado",
                         "name": "Usuario 2"
                     },
-                    "done": true,
-                    "assist": true
+                    "done": false,
+                    "assist": false
                 },
-                {
+                { 
+                    "bgColor": "#2778c4",
                     "id": "14519342",
                     "title": "Reserva 2",
                     "price": 6000,
@@ -58,10 +83,51 @@
                         "id": "No Registrado",
                         "name": "Usuario 2"
                     },
-                    "done": true,
-                    "assist": true
+                    "done": false,
+                    "assist": false
                 },
-                {
+                { 
+                    "bgColor": "#2778c4",
+                    "id": "14519342",
+                    "title": "Reserva 2",
+                    "price": 6000,
+                    "start": "Mon Jan 15 2024 14:00:00 GMT-0300 (hora estándar de Argentina)",
+                    "end": "Mon Jan 15 2024 16:00:00 GMT-0300 (hora estándar de Argentina)",
+                    "service": {
+                        "id": "1234twexcvbsd",
+                        "name": "Servicio 2",
+                        "duration": 2,
+                        "price": 6000
+                    },
+                    "user": {
+                        "id": "No Registrado",
+                        "name": "Usuario 2"
+                    },
+                    "done": false,
+                    "assist": false
+                },
+                { 
+                    "bgColor": "#2778c4",
+                    "id": "145193gdf42",
+                    "title": "Reserva 2",
+                    "price": 6000,
+                    "start": "Mon Jan 15 2024 17:00:00 GMT-0300 (hora estándar de Argentina)",
+                    "end": "Mon Jan 15 2024 19:00:00 GMT-0300 (hora estándar de Argentina)",
+                    "service": {
+                        "id": "1234twexcvbsd",
+                        "name": "Servicio 1",
+                        "duration": 1,
+                        "price": 6000
+                    },
+                    "user": {
+                        "id": "No Registrado",
+                        "name": "Usuario 22"
+                    },
+                    "done": false,
+                    "assist": false
+                },
+                { 
+                    "bgColor": "#2778c4",
                     "id": "12345142",
                     "title": "Reserva 3",
                     "price": 5000,
@@ -77,8 +143,8 @@
                         "id": "No Registrado",
                         "name": "Usuario 3"
                     },
-                    "done": true,
-                    "assist": true
+                    "done": false,
+                    "assist": false
                 }
             ], 
             "services": [
@@ -104,9 +170,11 @@
         },
         {
             "id": "987654321",
+            "bookingPerHour": 2,
             "name": "Peluquería",
             "availability": [ 
                 {
+                    "bgColor": "grey",
                     "id": "123451932",
                     "title": "Reserva 1",
                     "start": "Tue Dec 14 2023 19:00:00 GMT-0300 (hora estándar de Argentina)",
@@ -125,6 +193,7 @@
                     "assist": true
                 },
                 {
+                    "bgColor": "grey",
                     "id": "14519342",
                     "title": "Reserva 2",
                     "start": "Tue Dec 12 2023 14:00:00 GMT-0300 (hora estándar de Argentina)",
@@ -143,6 +212,7 @@
                     "assist": true
                 },
                 {
+                    "bgColor": "grey",
                     "id": "12345142",
                     "title": "Reserva 3",
                     "start": "Tue Dec 13 2023 21:00:00 GMT-0300 (hora estándar de Argentina)",
@@ -184,6 +254,7 @@
         },
         {
             "id": "126437859",
+            "bookingPerHour": 3,
             "name": "Odontólogo",
             "availability": [ 
                 {
@@ -264,6 +335,7 @@
         },
         {
             "id": "1264378478",
+            "bookingPerHour": 2,
             "name": "Barbero",
             "availability": [ 
                 {

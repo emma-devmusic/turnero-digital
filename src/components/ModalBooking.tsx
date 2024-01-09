@@ -4,11 +4,13 @@ import { es } from 'date-fns/locale';
 import { Dispatch, SetStateAction, useContext, useEffect, useState } from 'react';
 import DatePicker, {registerLocale} from "react-datepicker";
 import { AvailabilityContext, ShopContext } from '../context';
-import { formValuesFormated, getServiceSelected } from '../helpers';
+import { formValidate, formValuesFormated, getServiceSelected } from '../helpers';
 import { BookingContext } from '../context/BookingContext';
 import {  updateBooking } from '../context/actions/bookingActions';
 import { DatePickerBooking } from "./DatePickerBooking";
+import { ErrorsMsgForm } from './ErrorsMsgForm';
 import "react-datepicker/dist/react-datepicker.css";
+import Swal from "sweetalert2";
 
 type PropsModal = { 
     modalIsOpen: boolean; 
@@ -16,12 +18,17 @@ type PropsModal = {
 };
 
 registerLocale('es', es);
-
+const toDay = new Date();
+const toTenAm = new Date(toDay.getFullYear(), toDay.getMonth(), toDay.getDate(), 0);
 const formValuesInitialState = {
     id: '',
+    assist: false,
+    done: false,    
     price: 5000,
+    bgColor: 'darkgreen',
+    desc: '',
     title: '',
-    start: new Date(),
+    start: toTenAm,
     name: '',
     service: {
         id: "1234twexcvbssd",
@@ -29,7 +36,7 @@ const formValuesInitialState = {
         duration: 1,
         price: 5000
     },
-    end: addHours(new Date(), 1),
+    end: addHours(toTenAm, 1),
     user: {
         id: 'No Registrado',
         name: ''
@@ -51,12 +58,13 @@ const customStyles = {
 };
 export const ModalBooking = ({modalIsOpen, setIsOpen}: PropsModal) => {
 
-    const {availabilityState: { selected, availabilities }, updateAvailability, dispatch } = useContext(AvailabilityContext);
+    const {availabilityState: { selected }, updateAvailability, dispatch } = useContext(AvailabilityContext);
     const { shopState:{ services, name } } = useContext(ShopContext);
     const { bookingState, newBooking, dispatchBooking } = useContext(BookingContext)
     const [ isUpdating, setIsUpdating ] = useState(false);
     const [formValues, setFormValues] = useState<any>(formValuesInitialState);
     const [isInvalid, setIsInvalid] = useState('');
+    const [trySend, setTrySend] = useState(false)
 
     const onDateChanged = (event: any, changing: any) => {
         setFormValues({
@@ -75,23 +83,37 @@ export const ModalBooking = ({modalIsOpen, setIsOpen}: PropsModal) => {
             price: service?.price || formValues.price
         })
     }
-    
     const handleSave = () => {
-        if(isUpdating) {
-            const updateReserve = formValuesFormated(formValues, 'update');
-            if(!!updateReserve.bgColor) {
-                updateBooking(updateReserve, dispatchBooking)
+        setTrySend(true)
+        if(
+            formValidate(formValues).length === 0
+            && formValues.start !== toTenAm   
+        ){
+            console.log('aqui')
+            setIsInvalid('')
+            if(isUpdating) {
+                const updateReserve = formValuesFormated(formValues, 'update');
+                if(updateReserve.bgColor === 'darkgreen') {
+                    updateBooking(updateReserve, dispatchBooking)
+                } else {
+                    updateAvailability(updateReserve, dispatch);
+                }
+                setIsUpdating(false);
             } else {
-                updateAvailability(updateReserve, dispatch);
+                const newReserve = formValuesFormated({...formValues, title: name}, 'new' );
+                newBooking(newReserve, dispatchBooking);
             }
-            setIsUpdating(false);
-        } else {
-            const newReserve = formValuesFormated({...formValues, title: name}, 'new' );
-            newBooking(newReserve, dispatchBooking);
+            setFormValues(formValuesInitialState)
+            closeModal()
+        } else if( formValues.start == toTenAm ) {
+            setIsInvalid('is-invalid');
+            Swal.fire('Selecciona una fecha', '', 'warning');
         }
-        setFormValues(formValuesInitialState)
-        closeModal()
     }
+
+    useEffect(() => {
+        if( formValues.start !== toTenAm ) setIsInvalid('')
+    }, [formValues.start])
 
     useEffect(() => {
         setFormValues({
@@ -102,6 +124,8 @@ export const ModalBooking = ({modalIsOpen, setIsOpen}: PropsModal) => {
     },[formValues.start, selected, bookingState.selected, formValues.service])
 
     useEffect( () => {
+
+
         if(selected || bookingState.selected){
             const data = {
                 ...formValues,
@@ -109,7 +133,8 @@ export const ModalBooking = ({modalIsOpen, setIsOpen}: PropsModal) => {
                 title: name, // NOMBRE DEL LOCAL
                 price: selected?.price || bookingState.selected?.price,
                 start: selected?.start || bookingState.selected?.start || new Date(),
-                name: selected?.user?.name || bookingState.selected?.user?.name || '-',
+                name: selected?.user?.name || bookingState.selected?.user?.name || ' - ',
+                desc: selected?.desc || bookingState.selected?.desc || ' - ',
                 service: selected?.service || bookingState.selected?.service ,
                 end: selected?.end || bookingState.selected?.end || addHours(new Date(), 2),
                 user: selected?.user || bookingState.selected?.user || {
@@ -125,9 +150,8 @@ export const ModalBooking = ({modalIsOpen, setIsOpen}: PropsModal) => {
         }
     },[selected, bookingState.selected])
 
-
     const closeModal = () => {
-        setFormValues(formValuesInitialState)
+        setTrySend(false)
         setIsOpen(false)
         setIsInvalid('');
     };
@@ -142,7 +166,7 @@ export const ModalBooking = ({modalIsOpen, setIsOpen}: PropsModal) => {
             >
                 
                     <div className="modal-header">
-                        <h5 className="modal-title" id="exampleModalLongTitle">{ selected ? 'Actualizar' : 'Nueva' } Reserva en {name}</h5>
+                        <h5 className="modal-title" id="exampleModalLongTitle">{ (selected || bookingState.selected) ? 'Actualizar' : 'Nueva' } reserva en {name}</h5>
                         <button type="button" className="close" data-dismiss="modal" onClick={closeModal}>
                         <span aria-hidden="true">&times;</span>
                         </button>
@@ -195,13 +219,27 @@ export const ModalBooking = ({modalIsOpen, setIsOpen}: PropsModal) => {
                                 <input 
                                     type="text" 
                                     className="form-control"
-                                    placeholder="Nombre de quién reserva"
+                                    placeholder="Nombre y Apellido de quién reserva"
                                     name="name"
                                     autoComplete="off"
                                     value={formValues.name}
                                     onChange={onInputChanged}
                                 />
                             </div>
+                            <div className="form-group mb-2">
+                                <label>Detalles</label>
+                                <textarea  
+                                    className="form-control"
+                                    placeholder="Algunos detalles que quieras agregar"
+                                    name="desc"
+                                    autoComplete="off"
+                                    value={formValues.desc}
+                                    onChange={onInputChanged}
+                                />
+                            </div>
+                            {
+                               trySend && formValidate(formValues).map( (msg, i) => <ErrorsMsgForm text={msg} key={i} />)
+                            }
                             <hr />
                             <DatePickerBooking 
                                 durationService={formValues.service.duration }

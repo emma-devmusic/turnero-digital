@@ -47,7 +47,7 @@ export const StepTwo: FC = () => {
 
   const onSelect = (event: Event) => {
     
-    if(!!event.bgColor) {
+    if(event.bgColor === 'darkgreen') {
       unselectReserve(dispatch)
       selectBooking(event, dispatchBooking)
     } else {
@@ -56,7 +56,7 @@ export const StepTwo: FC = () => {
     }
     const dateStarting = new Date(event.start || 0)
     console.log(
-      format(dateStarting, "HH:mm" )
+      event
     )
   }
   

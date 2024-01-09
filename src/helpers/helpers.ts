@@ -5,10 +5,13 @@ import { ShopAvailability } from '../context/';
 import { format, getDate, getDay, getMonth, hoursToMinutes, minutesToHours, setHours, setMinutes } from "date-fns";
 
 type FormValues = {
+    assist?: boolean,
+    done?: boolean,
     id?: 'string' | number,
     service?: ShopServices,
+    bgColor?: string,
     name: string,
-    notes?: string,
+    desc?: string,
     start: Date,
     end: Date,
     title: string,
@@ -41,11 +44,14 @@ export const tranformDateAviability = (shop: ShopState)  => {
 
 
 //devuelve la reserva formateada para ser guardada en la base de datos
-export const formValuesFormated = ({ id, end, name, start, title, service, price }:FormValues, type: 'new' | 'update') => {
+export const formValuesFormated = ({ id, end, name, start, title, service, price, assist, done, desc, bgColor }:FormValues, type: 'new' | 'update') => {
     return {
+        assist: false,
+        done: false,
         id: (type ==='new') ? uid() : id,
-        bgColor: (type==='new') ? 'darkgreen': undefined,
+        bgColor: (type==='new') ? 'darkgreen' : bgColor,
         price,
+        desc,
         end,
         service,
         start,
@@ -106,19 +112,36 @@ export const getNumbersOfTime:any = (time: any[]) => {
 }
 
 
-export const datesToExcludes = (arrayObj:TimeObjToExclude[]) => {
+export const datesToExcludes = (arrayObj:TimeObjToExclude[], stop: number) => {
     let array: any[] = []
+    let objCounter:any = {};
     arrayObj?.forEach( e => {
+        let string = `${e.arrayNumber[0]}${e.arrayNumber[1]}`;
+        if(objCounter[string] >= 1){
+            objCounter = {
+                ...objCounter,
+                [string]: objCounter[string] + 1
+            }
+        } else {
+            objCounter = {
+                ...objCounter,
+                [string]: 1
+            }
+        }
         for(let i= 0; i< e.duration; i++){
             for(let j = 0; j < 2; j++){
                 let min = j * 30 + e.arrayNumber[1];
-                if(e.arrayNumber[1] === 30) min = (j === 1) ? 0 : 30
-                array.push(
-                    setHours(setMinutes(e.date, min ), e.arrayNumber[0] + i)
-                )
+                if(e.arrayNumber[1] === 30){
+                    min = (j === 1) ? 0 : 30
+                } 
+                if(objCounter[string] === stop){
+                    array.push(
+                        setHours(setMinutes(e.date, min ), e.arrayNumber[0] + i)
+                    )
+                }
             }
         }
-    })
+    });
     return array
 }
 
@@ -157,4 +180,35 @@ export const minToHoursString = (minutes: number) => {
 export const differenceOfTimeInMin = ( durationService: number, timeToNexBooking: number ) => {
     const minutesService = hoursToMinutes(durationService);
     return minutesService - timeToNexBooking;
+}
+
+
+export const formValidate = (form:any) => {
+    let emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+    let phoneRegex = /^(?:(?:00)?549?)?0?(?:11|[2368]\d)(?:(?=\d{0,2}15)\d{2})??\d{8}$/g;
+    let nameRegex =  /^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ]+(?:\s+[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ]+){1,5}(?:\s+[-\sa-zA-ZáéíóúÁÉÍÓÚüÜñÑ]+)?$/g;
+
+    let toCheck = ['email', 'name', 'password', 'phone']
+    let arrayErrors:string[] = [];
+    let prop:string
+
+    for (prop in form) {
+        toCheck.forEach(e => {
+            if(e === prop){
+                if(prop === 'email' && !emailRegex.test(form[prop])){
+                    arrayErrors.push('*Email incorrecto.');
+                }
+                if(prop === 'phone' && !phoneRegex.test(form[prop])){
+                    arrayErrors.push('*Datos telefónicos incorrectos.');
+                }
+                if(prop === 'name' && !nameRegex.test(form[prop])) {
+                    arrayErrors.push('*Escribe tu nombre y apellido correctamente.');
+                }
+                if(prop === 'password' && form[prop].length < 6) {
+                    arrayErrors.push('*El password debe de ser de al menos 6 dígitos.')
+                }
+            }
+        })        
+    }
+    return arrayErrors
 }

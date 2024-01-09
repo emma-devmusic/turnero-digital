@@ -45,6 +45,7 @@ export interface ShopServices {
 
 export interface ShopState {
     selected?: boolean,
+    bookingPerHour: number,
     id: string,
     name: string,
     availability: ShopAvailability[] | [],
