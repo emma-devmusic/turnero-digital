@@ -14,6 +14,7 @@
     background-image: url('../img/backgroundCalendar.jpg');
     height: 100%;
     min-height: 100vh;
+    max-height: 100vh;
     z-index: 0;
 }
 
@@ -27,7 +28,7 @@
     margin: 1rem;
 }
 #app {
-    padding: 2rem 0;
+    padding: 1.5rem 0;
 }
 #login-register-container {
     margin-top: 2rem;
@@ -90,6 +91,10 @@ LOGIN FORM
 }
 
 
+.stepRoot {
+    width: 100%;
+}
+
 
 
 
@@ -109,12 +114,35 @@ REACT MODAL
 STEP RESUME
 ================================================================================
 */
+
+.stepResume {
+    display: flex;
+    padding: 0 1rem;
+    gap: 1rem;
+}
 .contact-card {
-    height: 70vh;
+    flex-basis: 20%;
+    min-width: 320px;
 }
 
 .stepResume-bookings {
+    flex-basis: 80%;
+    gap: 1rem;
+    width: 100%;
+    overflow-x: auto;
+}
+
+.stepResume-bookings .card {
+    min-width: 450px;
     height: 70vh ;
     overflow: auto;
-    overflow-x: hidden;
+}
+
+
+.stepResume-bookings .card  .card-title {
+    position: sticky;
+    top: 0;
+    background-color: white;
+    padding: 1rem;
+    margin: -1rem;
 }

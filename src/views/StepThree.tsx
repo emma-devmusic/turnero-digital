@@ -7,13 +7,13 @@ import { AuthContext, ShopContext } from "../context";
 
 export const StepThree = () => {
 
+    const navigate = useNavigate()
     const { authState:{ userEmail, userName, userPhone } } = useContext(AuthContext)
     const { bookingState: { booking } } = useContext(BookingContext);
     const { shopState } = useContext(ShopContext)
     const { name, email, phone } = getContactDataFromLocalStorage()
 
 
-    const navigate = useNavigate()
 
     const [trySend, setTrySend] = useState(false)
     const [formValues, setFormValues] = useState({

@@ -23,7 +23,7 @@ export const ContactCard = () => {
 
 
     return (
-        <div className="card w-100 contact-card">
+        <div className="card w-25 contact-card">
             <div className="card-body d-flex flex-column justify-content-between">
                 <div>
                     <div>

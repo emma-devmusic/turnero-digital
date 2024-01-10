@@ -20,7 +20,7 @@ export const BookingCard = ({title}:PropBookingCard) => {
 
 
   return (
-    <div className="card mr-3 mb-3 w-100">
+    <div className="card w-100 p-0">
         <div className="card-body">
             <h5 className="card-title">Reservas en {title}</h5>
             {

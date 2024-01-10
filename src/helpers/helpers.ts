@@ -20,10 +20,19 @@ type FormValues = {
 type TimeObjToExclude = { arrayNumber: number[], date: Date, duration: number }
 
 
-export const getContactDataFromLocalStorage = () => 
-    JSON.parse(
-        localStorage.getItem('contactInfo') || ''
-    );
+export const getContactDataFromLocalStorage = () => {
+    let obj = {
+        name: '',
+        email: '',
+        phone: 0
+    }
+    if(localStorage.getItem('contactInfo')) {
+        obj = JSON.parse(
+            localStorage.getItem('contactInfo') || ''
+        );
+    }
+    return obj;
+}
 
 
 export const checkSessionStorage = () : AuthState => {

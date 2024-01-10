@@ -28,14 +28,14 @@ export const StepResume = () => {
                     (!(booking.length > 0) || !localStorage.getItem('contactInfo') || !shopState.name) 
                     ? <h3 className="text-center text-alternative-2 font-weight-normal">Debe completar el paso anterior</h3>
                     : 
-                    <div className="d-flex ">
+                    <>
                         <ContactCard />
-                        <div className="container d-flex flex-column stepResume-bookings">
+                        <div className="d-flex stepResume-bookings">
                             {
                                 arrayBooking.map( (title:string, i:number) => <BookingCard title={title} key={i} />)
                             }
                         </div>
-                    </div>
+                    </>
                 }
             </div>
         </>

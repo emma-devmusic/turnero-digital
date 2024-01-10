@@ -7,8 +7,8 @@ export const Turnero = () => {
     
     return (
         <>
-            <div className="container" id="app">
-                <div className={`btn-group mb-5 d-flex justify-content-center ${turneroPage && 'none'}`}>
+            <div className="" id="app">
+                <div className={`btn-group mb-4 d-flex justify-content-center ${turneroPage && 'none'}`}>
                     <Link to={'step-one'}className="btn btn-primary step pl-5 pr-5" id="step1">Mercados</Link>
                     <Link to={'step-two'}className="btn btn-primary step pl-5 pr-5" id="step2">Calendario</Link>
                     <Link to={'step-three'}className="btn btn-primary step pl-5 pr-5" id="step3">Datos de Contacto</Link>

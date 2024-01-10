@@ -3,8 +3,6 @@ import { ShopAvailability } from "../../context"
 import { registerLocale } from "react-datepicker";
 import { es } from "date-fns/locale";
 import { firstUppercase } from "../../helpers";
-import { useContext } from "react";
-import { BookingContext } from "../../context/BookingContext";
 
 type PropBookingCard = {
   data: ShopAvailability,
@@ -28,21 +26,35 @@ export const BookingCard2 = ({data}:PropBookingCard) => {
     return (
         <>
             <hr />
-            <h6 className="card-subtitle mb-2">{data.service?.name}</h6>
-            <p className="card-text">
-            <strong>Precio: </strong> 
-            <span>${data.price}</span>
-            <br />
-            <strong>Fecha:</strong> <span>{firstUppercase(day)}</span>
-            <br />
-            <span>De </span> <strong>{timeStart}</strong> <span>a </span> <strong>{timeEnd}</strong>
-            </p>
             <div className="d-flex justify-content-between">
-            <button 
-                className="btn btn-outline-primary" 
-                onClick={handleClickEdit}  
-            >Editar</button>
-            <button className="btn btn-outline-danger" >Eliminar</button>
+                <div>
+                    <h6 className="card-subtitle mb-2">{data.service?.name}</h6>
+                    <p className="card-text">
+                        <strong>Precio: </strong> 
+                        <i>${data.price}</i>
+                        <br />
+                        <strong>Fecha:</strong> <span>{firstUppercase(day)}</span>
+                        <br />
+                        <span>De </span><strong>{timeStart}</strong><span>a </span><strong>{timeEnd}</strong>
+                        <p><strong>Notas: </strong>{data.desc}</p>
+                    </p>
+                </div>
+                <div className="d-flex flex-column justify-content-between">
+                    <button className="btn btn-outline-success">
+                        Pago Individual
+                    </button>
+                    <button 
+                        className="btn btn-outline-primary mt-3" 
+                        onClick={handleClickEdit}  
+                    >
+                        Editar
+                    </button>
+                    <button 
+                        className="btn btn-outline-danger mt-3" 
+                    >
+                        Eliminar
+                    </button>
+                </div>
             </div>
         </>
     )
