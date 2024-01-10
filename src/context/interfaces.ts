@@ -25,7 +25,7 @@ export interface ShopAvailability {
     id?: string | number;
     allDay?: boolean | undefined;
     name?: string | undefined;
-    title?: string; 
+    title: string; 
     start?: Date | string ;
     end?: Date | string ;
     resource?: any;

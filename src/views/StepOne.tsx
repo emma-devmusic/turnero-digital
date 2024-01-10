@@ -1,4 +1,4 @@
-import { ShopCard } from '../components/ShopCard';
+import { ShopCard } from '../components/shops/ShopCard';
 import { ShopContext } from '../context/ShopContext';
 import { ShopState } from '../context/interfaces';
 import { getShopsDB } from '../gettersDB/getShops';
@@ -9,6 +9,7 @@ export const StepOne = () => {
 
     const [shops, setShops] = useState([] as ShopState[])
     const {shopState} = useContext(ShopContext)
+    
     const arrayShop = async() => {
         const array = await getShopsDB()
         setShops(array)

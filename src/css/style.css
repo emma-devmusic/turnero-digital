@@ -27,7 +27,7 @@
     margin: 1rem;
 }
 #app {
-    padding: 2rem;
+    padding: 2rem 0;
 }
 #login-register-container {
     margin-top: 2rem;
@@ -70,13 +70,10 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
 
 
 /* 
-
 ================================================================================
 LOGIN FORM
 ================================================================================
-
 */
-
 
 #login-form, #register-form {
     width: 100%;
@@ -87,33 +84,20 @@ LOGIN FORM
     color: grey;
 }
 
-
-/* #ModalCenter {
-    z-index: 9999999 !important;
-} */
-
-
-
 #price {
     background-color:  white;
     border: none;
 }
+
+
+
+
+
 /* 
-
 ================================================================================
-React Date Picker
+REACT MODAL
 ================================================================================
-
 */
-
-/* .react-datepicker__input-container input {
-    text-align: center;
-    border: 1px solid lightgray;
-    border-radius: 4px;
-} */
-
-
-
 .ReactModal__Overlay--after-open {
     z-index: 99 !important;     
 }
@@ -121,10 +105,16 @@ React Date Picker
 
 
 /* 
--------------------------------
-
+================================================================================
+STEP RESUME
+================================================================================
 */
+.contact-card {
+    height: 70vh;
+}
 
-.backgroundImgCalendar {
-    /* background-image: url(../img/backgroundCalendar.jpg); */
+.stepResume-bookings {
+    height: 70vh ;
+    overflow: auto;
+    overflow-x: hidden;
 }

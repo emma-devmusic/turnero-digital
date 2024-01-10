@@ -3,7 +3,6 @@ import { Navbar } from "./components/Navbar";
 import { useContext, useEffect } from "react";
 import { AuthContext } from "./context/AuthContext";
 import { checkSessionStorage } from "./helpers/helpers";
-import { Modal } from "./components/Modal";
 
 
 export const App = () => {
@@ -38,7 +37,6 @@ export const App = () => {
         } 
       /> 
       <Outlet />
-      <Modal />
     </>
   )
 }

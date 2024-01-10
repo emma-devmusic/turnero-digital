@@ -89,7 +89,6 @@ export const ModalBooking = ({modalIsOpen, setIsOpen}: PropsModal) => {
             formValidate(formValues).length === 0
             && formValues.start !== toTenAm   
         ){
-            console.log('aqui')
             setIsInvalid('')
             if(isUpdating) {
                 const updateReserve = formValuesFormated(formValues, 'update');

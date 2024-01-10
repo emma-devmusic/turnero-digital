@@ -1,22 +1,25 @@
 import { useContext, useState } from "react";
 import { BookingContext } from "../context/BookingContext";
 import { useNavigate } from "react-router-dom";
-import { formValidate } from "../helpers";
+import { formValidate, getContactDataFromLocalStorage } from "../helpers";
 import { ErrorsMsgForm } from "../components/ErrorsMsgForm";
-import { ShopContext } from "../context";
+import { AuthContext, ShopContext } from "../context";
 
 export const StepThree = () => {
 
+    const { authState:{ userEmail, userName, userPhone } } = useContext(AuthContext)
     const { bookingState: { booking } } = useContext(BookingContext);
     const { shopState } = useContext(ShopContext)
+    const { name, email, phone } = getContactDataFromLocalStorage()
+
 
     const navigate = useNavigate()
 
     const [trySend, setTrySend] = useState(false)
     const [formValues, setFormValues] = useState({
-        name: '',
-        email: '',
-        phone: ''
+        name:  userName || name ||'',
+        email:  userEmail || email ||'',
+        phone:  userPhone || phone ||''
     })
 
     const handleInputChange = ({target}: any) => {
@@ -54,6 +57,7 @@ export const StepThree = () => {
                                     type="text" 
                                     className="form-control" 
                                     name="name"
+                                    value={formValues.name}
                                     placeholder="Nombre y Apellido"
                                 />
                             </div>
@@ -63,6 +67,7 @@ export const StepThree = () => {
                                     type="email" 
                                     className="form-control" 
                                     name="email" 
+                                    value={formValues.email}
                                     placeholder="Correo"
                                 />
                             </div>
@@ -72,6 +77,7 @@ export const StepThree = () => {
                                     type="phone" 
                                     className="form-control" 
                                     name="phone" 
+                                    value={formValues.phone}
                                     placeholder="Teléfono"
                                 />
                             </div>

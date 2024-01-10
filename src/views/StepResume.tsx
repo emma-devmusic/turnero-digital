@@ -1,27 +1,38 @@
-import { useContext } from "react"
-import { BookingCard } from "../components/BookingCard"
+import { useContext, useEffect, useState } from "react"
+import { BookingCard } from "../components/resume/BookingCard"
 import { BookingContext } from "../context/BookingContext"
 import { ShopContext } from "../context"
+import { ContactCard } from "../components/resume/ContactCard"
 
 
 export const StepResume = () => {
 
     const { bookingState: { booking } } = useContext(BookingContext)
     const { shopState } = useContext(ShopContext)
+    const [arrayBooking, setArrayBooking] = useState<any>([] as string[])
+
+    useEffect(() => {
+        const newArray:string[] = []
+        booking.forEach( e => {
+            if(!newArray.includes(e.title)) {
+                newArray.push(e.title);
+            }
+        })
+        setArrayBooking(newArray)
+    },[booking])
 
     return (
         <>
-            <div className="hide" id="view-3">
+            <div className="stepResume" id="view-3">
                 {
                     (!(booking.length > 0) || !localStorage.getItem('contactInfo') || !shopState.name) 
                     ? <h3 className="text-center text-alternative-2 font-weight-normal">Debe completar el paso anterior</h3>
-                    : <div id="ocultar-2">
-                        <h2 className="text-center mb-2 font-weight-normal">Resumen de tus turnos</h2>
-                        <hr/>
-                        <p className="form-text text-muted text-center mb-5">Puedes volver atrás y cambiar los datos</p>
-                        <div className="container d-flex flex-wrap">
+                    : 
+                    <div className="d-flex ">
+                        <ContactCard />
+                        <div className="container d-flex flex-column stepResume-bookings">
                             {
-                                booking.map( (element, i) => <BookingCard data={element} key={i} />)
+                                arrayBooking.map( (title:string, i:number) => <BookingCard title={title} key={i} />)
                             }
                         </div>
                     </div>

@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
-import { ShopState } from '../context/interfaces';
-import { ShopContext, shopInitialState } from '../context/ShopContext';
+import { ShopState } from '../../context/interfaces';
+import { ShopContext, shopInitialState } from '../../context/ShopContext';
 import { useNavigate } from 'react-router-dom';
 
 export const ShopCard = ({shop}: {shop: ShopState}) => {

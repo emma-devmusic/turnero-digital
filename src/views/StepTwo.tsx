@@ -1,17 +1,15 @@
 import { FC, useContext, useEffect, useState } from 'react';
 import { Calendar, Event, View } from 'react-big-calendar';
-import { CalendarEvent } from '../components/CalendarEvent';
+import { CalendarEvent } from '../components/calendar/CalendarEvent';
 import { getMessagesEs, localizer, eventStyleGetter } from '../calendarConf';
 import { AvailabilityContext, ShopContext } from '../context';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { BookingContext } from '../context/BookingContext';
+import { ModalBooking } from '../components/ModalBooking';
 import withDragAndDrop from 'react-big-calendar/lib/addons/dragAndDrop';
 import Swal from 'sweetalert2';
 import 'react-big-calendar/lib/addons/dragAndDrop/styles.css';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
-import { ModalBooking } from '../components/ModalBooking';
-import { getItem } from 'localforage';
-import { format, getTime } from 'date-fns';
 
 
 //@ts-ignore
@@ -54,10 +52,6 @@ export const StepTwo: FC = () => {
       unselectBooking(event, dispatchBooking);
       selectReserve(event, dispatch)
     }
-    const dateStarting = new Date(event.start || 0)
-    console.log(
-      event
-    )
   }
   
   const onViewChanged = (view:View) => {

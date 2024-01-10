@@ -20,6 +20,12 @@ type FormValues = {
 type TimeObjToExclude = { arrayNumber: number[], date: Date, duration: number }
 
 
+export const getContactDataFromLocalStorage = () => 
+    JSON.parse(
+        localStorage.getItem('contactInfo') || ''
+    );
+
+
 export const checkSessionStorage = () : AuthState => {
     const user = JSON.parse(
         sessionStorage.getItem('user') || '{"isLogged": false}'
