@@ -133,7 +133,8 @@ STEP RESUME
 }
 
 .stepResume-bookings .card {
-    min-width: 450px;
+    min-width: 425px;
+    max-width: 450px;
     height: 70vh ;
     overflow: auto;
 }

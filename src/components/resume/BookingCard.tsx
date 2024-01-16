@@ -22,7 +22,14 @@ export const BookingCard = ({title}:PropBookingCard) => {
   return (
     <div className="card w-100 p-0">
         <div className="card-body">
-            <h5 className="card-title">Reservas en {title}</h5>
+            <div className="card-title d-flex justify-content-between align-items-center  ">
+              <h5 className="m-0">Reservas en {title}</h5>
+              <button 
+                className="btn btn-info btn-sm"
+              >
+                Info Contacto
+              </button>
+            </div>
             {
               booking.map( (element,i) => {
                 if( title === element.title )

@@ -7,9 +7,9 @@ import { ContactCard } from "../components/resume/ContactCard"
 
 export const StepResume = () => {
 
-    const { bookingState: { booking } } = useContext(BookingContext)
-    const { shopState } = useContext(ShopContext)
-    const [arrayBooking, setArrayBooking] = useState<any>([] as string[])
+    const { bookingState: { booking } } = useContext(BookingContext);
+    const { shopState } = useContext(ShopContext);
+    const [arrayBooking, setArrayBooking] = useState<any>([] as string[]);
 
     useEffect(() => {
         const newArray:string[] = []
@@ -26,7 +26,7 @@ export const StepResume = () => {
             <div className="stepResume" id="view-3">
                 {
                     (!(booking.length > 0) || !localStorage.getItem('contactInfo') || !shopState.name) 
-                    ? <h3 className="text-center text-alternative-2 font-weight-normal">Debe completar el paso anterior</h3>
+                    ? <h3 className="text-center text-alternative-2 font-weight-normal w-100">Debe completar el paso anterior</h3>
                     : 
                     <>
                         <ContactCard />

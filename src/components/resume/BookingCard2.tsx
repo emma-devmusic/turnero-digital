@@ -39,18 +39,18 @@ export const BookingCard2 = ({data}:PropBookingCard) => {
                         <p><strong>Notas: </strong>{data.desc}</p>
                     </p>
                 </div>
-                <div className="d-flex flex-column justify-content-between">
-                    <button className="btn btn-outline-success">
+                <div className="d-flex flex-column">
+                    <button className="btn btn-outline-success btn-sm">
                         Pago Individual
                     </button>
                     <button 
-                        className="btn btn-outline-primary mt-3" 
+                        className="btn btn-outline-primary mt-2 btn-sm" 
                         onClick={handleClickEdit}  
                     >
                         Editar
                     </button>
                     <button 
-                        className="btn btn-outline-danger mt-3" 
+                        className="btn btn-outline-danger mt-2 btn-sm" 
                     >
                         Eliminar
                     </button>
