@@ -1,9 +1,16 @@
 {
     "locales": [
-        { 
+        {
             "id": "123456789",
             "bookingPerHour": 3,
             "name": "Estética",
+            "description": "Descripción del centro de estética Estética",
+            "address": "Calle tal, numero tal",
+            "city": "Charata",
+            "province": "Chaco",
+            "country": "Argentina",
+            "phone": 3731455614,
+            "email":"correo@estetica.com",
             "availability": [
                 {
                     "bgColor": "#2778c4",
@@ -175,6 +182,13 @@
             "id": "987654321",
             "bookingPerHour": 2,
             "name": "Peluquería",
+            "description": "Descripción del centro de Peluquería",
+            "address": "Calle tal, numero tal",
+            "city": "Charata",
+            "province": "Chaco",
+            "country": "Argentina",
+            "phone": 3731455614,
+            "email":"correo@peluqueria.com",
             "availability": [ 
                 {
                     "bgColor": "grey",
@@ -259,6 +273,13 @@
             "id": "126437859",
             "bookingPerHour": 3,
             "name": "Odontólogo",
+            "description": "Descripción del centro de Odontología",
+            "address": "Calle tal, numero tal",
+            "city": "Charata",
+            "province": "Chaco",
+            "country": "Argentina",
+            "phone": 3731455614,
+            "email":"correo@odontologo.com",
             "availability": [ 
                 {
                     "id": "123451932",
@@ -340,6 +361,13 @@
             "id": "1264378478",
             "bookingPerHour": 2,
             "name": "Barbero",
+            "description": "Descripción del centro de Barbería",
+            "address": "Calle tal, numero tal",
+            "city": "Charata",
+            "province": "Chaco",
+            "country": "Argentina",
+            "phone": 3731455614,
+            "email":"correo@barberia.com",
             "availability": [ 
                 {
                     "id": "123451932",

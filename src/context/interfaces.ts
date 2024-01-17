@@ -1,6 +1,5 @@
 import { Dispatch } from "react";
 import { ShopAvailabilityAction } from ".";
-import { newBooking, deleteBooking, updateBooking, selectBooking, unselectBooking } from './actions/bookingActions';
 import { BookingAction } from "./reducers/bookingReducer";
 
 export type idReserve = string | number;
@@ -48,6 +47,12 @@ export interface ShopState {
     bookingPerHour: number,
     id: string,
     name: string,
+    description?: string,
+    address?: string,
+    city?: string,
+    province?: string,
+    country?: string,
+    email?: string,
     availability: ShopAvailability[] | [],
     services: ShopServices[]
 }
