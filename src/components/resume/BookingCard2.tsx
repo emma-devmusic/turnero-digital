@@ -3,6 +3,7 @@ import { ShopAvailability } from "../../context"
 import { registerLocale } from "react-datepicker";
 import { es } from "date-fns/locale";
 import { firstUppercase } from "../../helpers";
+import Swal from "sweetalert2";
 
 type PropBookingCard = {
   data: ShopAvailability,
@@ -21,6 +22,7 @@ export const BookingCard2 = ({data}:PropBookingCard) => {
 
     const handleClickEdit = () => {
         console.log(data)
+        Swal.fire()
     }
 
     return (
@@ -36,7 +38,8 @@ export const BookingCard2 = ({data}:PropBookingCard) => {
                         <strong>Fecha:</strong> <span>{firstUppercase(day)}</span>
                         <br />
                         <span>De </span><strong>{timeStart}</strong><span>a </span><strong>{timeEnd}</strong>
-                        <p><strong>Notas: </strong>{data.desc}</p>
+                        <br />
+                        <strong>Notas: </strong>{data.desc}
                     </p>
                 </div>
                 <div className="d-flex flex-column">

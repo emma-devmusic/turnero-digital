@@ -24,7 +24,7 @@ export interface ShopAvailability {
     id?: string | number;
     allDay?: boolean | undefined;
     name?: string | undefined;
-    title: string; 
+    shop?: string; 
     start?: Date | string ;
     end?: Date | string ;
     resource?: any;
@@ -42,7 +42,23 @@ export interface ShopServices {
     price: number | string
 }
 
+export interface Shop {
+    phone?: number | string,
+    bookingPerHour: number,
+    id: string,
+    name: string,
+    description?: string,
+    address?: string,
+    city?: string,
+    province?: string,
+    country?: string,
+    email?: string,
+    availability: ShopAvailability[] | [],
+    services: ShopServices[]
+}
+
 export interface ShopState {
+    phone?: number | string,
     selected?: boolean,
     bookingPerHour: number,
     id: string,

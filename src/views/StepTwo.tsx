@@ -32,7 +32,8 @@ export const StepTwo: FC = () => {
   const navigate = useNavigate()
 
   const stateBookingInCorrectShop = () => {
-    const toAdd = bookingState.booking.filter( b => b.title === shopState.name)
+    const toAdd = bookingState.booking.filter( b => b.shop === shopState.id)
+    console.log(bookingState.booking)
     return [...availabilities, ...toAdd]
   }
 
@@ -44,7 +45,7 @@ export const StepTwo: FC = () => {
   }
 
   const onSelect = (event: Event) => {
-    
+    console.log(event)
     if(event.bgColor === 'darkgreen') {
       unselectReserve(dispatch)
       selectBooking(event, dispatchBooking)

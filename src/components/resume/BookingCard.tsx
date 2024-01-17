@@ -1,38 +1,50 @@
-import { format } from "date-fns"
-import { ShopAvailability } from "../../context"
+
 import { registerLocale } from "react-datepicker";
 import { es } from "date-fns/locale";
-import { firstUppercase } from "../../helpers";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from 'react';
 import { BookingContext } from "../../context/BookingContext";
 import { BookingCard2 } from "./BookingCard2";
+import { Shop } from '../../context/interfaces';
+import { getShopByID } from "../../gettersDB/getShops";
+import { showShopInfo } from "../../helpers";
 
 type PropBookingCard = {
-  title: string,
+  shopId: string,
   key?: number,
 }
 
 registerLocale('es', es);
 
-export const BookingCard = ({title}:PropBookingCard) => {
+export const BookingCard = ({shopId}:PropBookingCard) => {
 
   const { bookingState: { booking } } = useContext(BookingContext)
+  const [shop, setShop] = useState({} as Shop)
 
+  useEffect(() => {
+    getShopByID(shopId).then(
+      resp => setShop( resp )
+    )
+  },[])
+
+  const handleShowShopInfo = () => {
+    showShopInfo(shop)
+  }
 
   return (
     <div className="card w-100 p-0">
         <div className="card-body">
             <div className="card-title d-flex justify-content-between align-items-center  ">
-              <h5 className="m-0">Reservas en {title}</h5>
+              <h5 className="m-0">Reservas en {shop.name}</h5>
               <button 
                 className="btn btn-info btn-sm"
+                onClick={handleShowShopInfo}
               >
                 Info Contacto
               </button>
             </div>
             {
               booking.map( (element,i) => {
-                if( title === element.title )
+                if( shop.id === element.shop )
                 return <BookingCard2 data={element} key={i} />
               } )
             }

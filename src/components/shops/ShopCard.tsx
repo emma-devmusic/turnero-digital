@@ -23,11 +23,11 @@ export const ShopCard = ({shop}: {shop: ShopState}) => {
     }
     
     return (
-        <button 
-            className={`btn btn-primary btn-local ${shop.selected && 'selected'}`} 
+        <div 
+            className={`btn-local rounded d-flex justify-content-center align-items-center ${shop.selected && 'selected'}`} 
             onClick={handleClick}    
         >
             {shop.name}
-        </button>       
+        </div>       
     )
 }

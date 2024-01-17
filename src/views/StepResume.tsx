@@ -1,25 +1,29 @@
 import { useContext, useEffect, useState } from "react"
 import { BookingCard } from "../components/resume/BookingCard"
 import { BookingContext } from "../context/BookingContext"
-import { ShopContext } from "../context"
+import { Shop, ShopContext } from "../context"
 import { ContactCard } from "../components/resume/ContactCard"
+import { getShopByID } from "../gettersDB/getShops"
 
 
 export const StepResume = () => {
 
     const { bookingState: { booking } } = useContext(BookingContext);
     const { shopState } = useContext(ShopContext);
-    const [arrayBooking, setArrayBooking] = useState<any>([] as string[]);
+    const [arrayBookingShops, setArrayBookingShops] = useState<any>([]);
 
     useEffect(() => {
         const newArray:string[] = []
         booking.forEach( e => {
-            if(!newArray.includes(e.title)) {
-                newArray.push(e.title);
+            if(!newArray.includes(e.shop || '')) {
+                newArray.push(e.shop || '');
             }
         })
-        setArrayBooking(newArray)
+        setArrayBookingShops(newArray)
     },[booking])
+
+
+
 
     return (
         <>
@@ -32,7 +36,7 @@ export const StepResume = () => {
                         <ContactCard />
                         <div className="d-flex stepResume-bookings">
                             {
-                                arrayBooking.map( (title:string, i:number) => <BookingCard title={title} key={i} />)
+                                arrayBookingShops.map( (shopId:string, i:number) => <BookingCard shopId={shopId} key={i} />)
                             }
                         </div>
                     </>

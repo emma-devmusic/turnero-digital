@@ -15,7 +15,7 @@
                 {
                     "bgColor": "#2778c4",
                     "id": "123451932",
-                    "title": "Estética",
+                    "shop": "123456789",
                     "price": 7000,
                     "start": "Fri Jan 12 2024 19:00:00 GMT-0300 (hora estándar de Argentina)",
                     "end": "Fri Jan 12 2024 20:00:00 GMT-0300 (hora estándar de Argentina)",
@@ -28,7 +28,9 @@
                     },
                     "user": {
                         "id": "No Registrado",
-                        "name": "Usuario 1"
+                        "name": "Usuario 1",
+                        "phone": 3731455614,
+                        "email": "correo@correodelusuario.com"
                     },
                     "done": false,
                     "assist": false
@@ -36,7 +38,7 @@
                 {
                     "bgColor": "#2778c4",
                     "id": "1451hfgh9342",
-                    "title": "Estética",
+                    "shop": "123456789",
                     "price": 6000,
                     "start": "Mon Jan 15 2024 14:00:00 GMT-0300 (hora estándar de Argentina)",
                     "end": "Mon Jan 15 2024 16:00:00 GMT-0300 (hora estándar de Argentina)",
@@ -48,7 +50,9 @@
                     },
                     "user": {
                         "id": "No Registrado",
-                        "name": "Usuario 27"
+                        "name": "Usuario 27",
+                        "phone": 3731455614,
+                        "email": "correo@correodelusuario.com"
                     },
                     "done": false,
                     "assist": false
@@ -56,7 +60,7 @@
                 { 
                     "bgColor": "#2778c4",
                     "id": "14519342sdf",
-                    "title": "Estética",
+                    "shop": "123456789",
                     "price": 6000,
                     "start": "Mon Jan 15 2024 14:00:00 GMT-0300 (hora estándar de Argentina)",
                     "end": "Mon Jan 15 2024 16:00:00 GMT-0300 (hora estándar de Argentina)",
@@ -68,7 +72,9 @@
                     },
                     "user": {
                         "id": "No Registrado",
-                        "name": "Usuario 2"
+                        "name": "Usuario 2",
+                        "phone": 3731455614,
+                        "email": "correo@correodelusuario.com"
                     },
                     "done": false,
                     "assist": false
@@ -76,7 +82,7 @@
                 { 
                     "bgColor": "#2778c4",
                     "id": "14519342",
-                    "title": "Reserva 2",
+                    "shop": "123456789",
                     "price": 6000,
                     "start": "Mon Jan 15 2024 17:00:00 GMT-0300 (hora estándar de Argentina)",
                     "end": "Mon Jan 15 2024 19:00:00 GMT-0300 (hora estándar de Argentina)",
@@ -88,7 +94,9 @@
                     },
                     "user": {
                         "id": "No Registrado",
-                        "name": "Usuario 2"
+                        "name": "Usuario 2",
+                        "phone": 3731455614,
+                        "email": "correo@correodelusuario.com"
                     },
                     "done": false,
                     "assist": false
@@ -96,7 +104,7 @@
                 { 
                     "bgColor": "#2778c4",
                     "id": "14519342",
-                    "title": "Reserva 2",
+                    "shop": "123456789",
                     "price": 6000,
                     "start": "Mon Jan 15 2024 14:00:00 GMT-0300 (hora estándar de Argentina)",
                     "end": "Mon Jan 15 2024 16:00:00 GMT-0300 (hora estándar de Argentina)",
@@ -108,7 +116,9 @@
                     },
                     "user": {
                         "id": "No Registrado",
-                        "name": "Usuario 2"
+                        "name": "Usuario 2",
+                        "phone": 3731455614,
+                        "email": "correo@correodelusuario.com"
                     },
                     "done": false,
                     "assist": false
@@ -116,7 +126,7 @@
                 { 
                     "bgColor": "#2778c4",
                     "id": "145193gdf42",
-                    "title": "Reserva 2",
+                    "shop": "123456789",
                     "price": 6000,
                     "start": "Mon Jan 15 2024 17:00:00 GMT-0300 (hora estándar de Argentina)",
                     "end": "Mon Jan 15 2024 19:00:00 GMT-0300 (hora estándar de Argentina)",
@@ -128,7 +138,9 @@
                     },
                     "user": {
                         "id": "No Registrado",
-                        "name": "Usuario 22"
+                        "name": "Usuario 22",
+                        "phone": 3731455614,
+                        "email": "correo@correodelusuario.com"
                     },
                     "done": false,
                     "assist": false
@@ -136,7 +148,7 @@
                 { 
                     "bgColor": "#2778c4",
                     "id": "12345142",
-                    "title": "Reserva 3",
+                    "shop": "123456789",
                     "price": 5000,
                     "start": "Thu Jan 11 2024 21:00:00 GMT-0300 (hora estándar de Argentina)",
                     "end": "Thu Jan 11 2024 23:00:00 GMT-0300 (hora estándar de Argentina)",
@@ -148,7 +160,9 @@
                     },
                     "user": {
                         "id": "No Registrado",
-                        "name": "Usuario 3"
+                        "name": "Usuario 3",
+                        "phone": 3731455614,
+                        "email": "correo@correodelusuario.com"
                     },
                     "done": false,
                     "assist": false
@@ -193,7 +207,7 @@
                 {
                     "bgColor": "grey",
                     "id": "123451932",
-                    "title": "Reserva 1",
+                    "shop": "987654321",
                     "start": "Tue Dec 14 2023 19:00:00 GMT-0300 (hora estándar de Argentina)",
                     "end": "Tue Dec 14 2023 20:00:00 GMT-0300 (hora estándar de Argentina)",
                     "service": {
@@ -204,7 +218,9 @@
                     },
                     "user": {
                         "id": "No Registrado",
-                        "name": "Usuario 1"
+                        "name": "Usuario 1",
+                        "phone": 3731455614,
+                        "email": "correo@correodelusuario.com"
                     },
                     "done": true,
                     "assist": true
@@ -212,7 +228,7 @@
                 {
                     "bgColor": "grey",
                     "id": "14519342",
-                    "title": "Reserva 2",
+                    "shop": "987654321",
                     "start": "Tue Dec 12 2023 14:00:00 GMT-0300 (hora estándar de Argentina)",
                     "end": "Tue Dec 12 2023 16:00:00 GMT-0300 (hora estándar de Argentina)",
                     "service": {
@@ -223,7 +239,9 @@
                     },
                     "user": {
                         "id": "No Registrado",
-                        "name": "Usuario 2"
+                        "name": "Usuario 2",
+                        "phone": 3731455614,
+                        "email": "correo@correodelusuario.com"
                     },
                     "done": true,
                     "assist": true
@@ -231,7 +249,7 @@
                 {
                     "bgColor": "grey",
                     "id": "12345142",
-                    "title": "Reserva 3",
+                    "shop": "987654321",
                     "start": "Tue Dec 13 2023 21:00:00 GMT-0300 (hora estándar de Argentina)",
                     "end": "Tue Dec 13 2023 23:00:00 GMT-0300 (hora estándar de Argentina)",
                     "service": {
@@ -242,7 +260,9 @@
                     },
                     "user": {
                         "id": "No Registrado",
-                        "name": "Usuario 3"
+                        "name": "Usuario 3",
+                        "phone": 3731455614,
+                        "email": "correo@correodelusuario.com"
                     },
                     "done": true,
                     "assist": true
@@ -283,7 +303,7 @@
             "availability": [ 
                 {
                     "id": "123451932",
-                    "title": "Reserva 1",
+                    "shop": "126437859",
                     "start": "Tue Dec 14 2023 19:00:00 GMT-0300 (hora estándar de Argentina)",
                     "end": "Tue Dec 14 2023 20:00:00 GMT-0300 (hora estándar de Argentina)",
                     "service": {
@@ -294,14 +314,16 @@
                     },
                     "user": {
                         "id": "No Registrado",
-                        "name": "Usuario 1"
+                        "name": "Usuario 1",
+                        "phone": 3731455614,
+                        "email": "correo@correodelusuario.com"
                     },
                     "done": true,
                     "assist": true
                 },
                 {
                     "id": "14519vb342",
-                    "title": "Reserva 2",
+                    "shop": "126437859",
                     "start": "Tue Dec 12 2023 14:00:00 GMT-0300 (hora estándar de Argentina)",
                     "end": "Tue Dec 12 2023 16:00:00 GMT-0300 (hora estándar de Argentina)",
                     "service": {
@@ -312,14 +334,16 @@
                     },
                     "user": {
                         "id": "No Registrado",
-                        "name": "Usuario 2"
+                        "name": "Usuario 2",
+                        "phone": 3731455614,
+                        "email": "correo@correodelusuario.com"
                     },
                     "done": true,
                     "assist": true
                 },
                 {
                     "id": "1234514haj2",
-                    "title": "Reserva 3",
+                    "shop": "126437859",
                     "start": "Tue Dec 12 2023 21:00:00 GMT-0300 (hora estándar de Argentina)",
                     "end": "Tue Dec 12 2023 23:00:00 GMT-0300 (hora estándar de Argentina)",
                     "service": {
@@ -330,7 +354,9 @@
                     },
                     "user": {
                         "id": "No Registrado",
-                        "name": "Usuario 3"
+                        "name": "Usuario 3",
+                        "phone": 3731455614,
+                        "email": "correo@correodelusuario.com"
                     },
                     "done": true,
                     "assist": true
@@ -371,7 +397,7 @@
             "availability": [ 
                 {
                     "id": "123451932",
-                    "title": "Reserva 1",
+                    "shop": "1264378478",
                     "start": "Tue Dec 12 2023 19:00:00 GMT-0300 (hora estándar de Argentina)",
                     "end": "Tue Dec 12 2023 20:00:00 GMT-0300 (hora estándar de Argentina)",
                     "service": {
@@ -382,14 +408,16 @@
                     },
                     "user": {
                         "id": "No Registrado",
-                        "name": "Usuario 1"
+                        "name": "Usuario 1",
+                        "phone": 3731455614,
+                        "email": "correo@correodelusuario.com"
                     },
                     "done": true,
                     "assist": true
                 },
                 {
                     "id": "14519342",
-                    "title": "Reserva 2",
+                    "shop": "1264378478",
                     "start": "Tue Dec 12 2023 14:00:00 GMT-0300 (hora estándar de Argentina)",
                     "end": "Tue Dec 12 2023 16:00:00 GMT-0300 (hora estándar de Argentina)",
                     "service": {
@@ -400,14 +428,16 @@
                     },
                     "user": {
                         "id": "No Registrado",
-                        "name": "Usuario 2"
+                        "name": "Usuario 2",
+                        "phone": 3731455614,
+                        "email": "correo@correodelusuario.com"
                     },
                     "done": true,
                     "assist": true
                 },
                 {
                     "id": "12345142",
-                    "title": "Reserva 3",
+                    "shop": "1264378478",
                     "start": "Tue Dec 12 2023 21:00:00 GMT-0300 (hora estándar de Argentina)",
                     "end": "Tue Dec 12 2023 23:00:00 GMT-0300 (hora estándar de Argentina)",
                     "service": {
@@ -418,7 +448,9 @@
                     },
                     "user": {
                         "id": "No Registrado",
-                        "name": "Usuario 3"
+                        "name": "Usuario 3",
+                        "phone": 3731455614,
+                        "email": "correo@correodelusuario.com"
                     },
                     "done": true,
                     "assist": true

@@ -1,9 +1,12 @@
-import { ShopState } from "../context";
 
 export const getShopsDB = async () => {
-    let shops: ShopState[];
     const resp = await fetch('../../data.json');
     const { locales } = await resp.json();
-    shops = [ ...locales ]
-    return shops;
+    return locales;
+}
+
+export const getShopByID = async (shopId:string) => {
+    const resp = await fetch('../../data.json')
+    const { locales } = await resp.json()
+    return locales.find( (shop:any) => shop.id == shopId)
 }

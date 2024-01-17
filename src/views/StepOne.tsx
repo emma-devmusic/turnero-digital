@@ -23,8 +23,8 @@ export const StepOne = () => {
     return (
         <>
             <div className="hide" id="view-1">
-                <h2 className="text-center font-weight-normal mt-5">¿En qué negocio estás buscando un turno? &#129300;</h2>
-                <div className="d-flex flex-wrap justify-content-center mt-5" id="locales">
+                <h3 className="text-center font-weight-normal mt-5">¿En qué negocio estás buscando un turno? </h3>
+                <div className="d-flex flex-column justify-content-center align-items-center mt-5" id="locales">
                 {
                     shops.map( (shop, i) => (
                         <ShopCard shop={{

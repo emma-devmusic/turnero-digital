@@ -23,10 +23,23 @@
 }
 
 .btn-local {
-    width: 150px;
-    height: 80px;
-    margin: 1rem;
+    background-color: rgba(255, 255, 255, 0.856);
+    border: 1px solid lightgray;
+    width: 100%;
+    max-width: 800px;
+    height: 60px;
 }
+
+.btn-select {
+    color: white;
+    background-color: #004a99e2;
+}
+
+.btn-local:hover, .btn-select:hover {
+    cursor: pointer;
+    background-color: rgba(233, 233, 233, 0.856);
+}
+
 #app {
     padding: 1.5rem 0;
 }
@@ -44,8 +57,8 @@
     color: white;
 }
 .selected:hover {
-    background-color: transparent;
-    color: #007bff;
+    background-color:  #004792c8;
+    color: white;
 }
 div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
     background-color: #007bff !important;
@@ -67,7 +80,6 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
 .hr {
     width: 100%;
 }
-
 
 
 /* 
@@ -96,8 +108,6 @@ LOGIN FORM
 }
 
 
-
-
 /* 
 ================================================================================
 REACT MODAL
@@ -106,7 +116,6 @@ REACT MODAL
 .ReactModal__Overlay--after-open {
     z-index: 99 !important;     
 }
-
 
 
 /* 

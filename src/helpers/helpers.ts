@@ -1,8 +1,9 @@
 import { Event } from "react-big-calendar";
-import { AuthState, ShopServices, ShopState } from "../context"
+import { AuthState, Shop, ShopServices, ShopState } from "../context"
 import { uid } from 'uid';
 import { ShopAvailability } from '../context/';
 import { format, getDate, getDay, getMonth, hoursToMinutes, minutesToHours, setHours, setMinutes } from "date-fns";
+import Swal from "sweetalert2";
 
 type FormValues = {
     assist?: boolean,
@@ -14,7 +15,7 @@ type FormValues = {
     desc?: string,
     start: Date,
     end: Date,
-    title: string,
+    shop: string,
     price: number | string
 }
 type TimeObjToExclude = { arrayNumber: number[], date: Date, duration: number }
@@ -59,7 +60,7 @@ export const tranformDateAviability = (shop: ShopState)  => {
 
 
 //devuelve la reserva formateada para ser guardada en la base de datos
-export const formValuesFormated = ({ id, end, name, start, title, service, price, assist, done, desc, bgColor }:FormValues, type: 'new' | 'update') => {
+export const formValuesFormated = ({ id, end, name, start, shop, service, price, assist, done, desc, bgColor }:FormValues, type: 'new' | 'update') => {
     return {
         assist: false,
         done: false,
@@ -70,7 +71,7 @@ export const formValuesFormated = ({ id, end, name, start, title, service, price
         end,
         service,
         start,
-        title,
+        shop,
         user: {
             id: 'No Registrado',
             name
@@ -222,4 +223,23 @@ export const formValidate = (form:any) => {
         })        
     }
     return arrayErrors
+}
+
+
+
+export const showShopInfo = (shop: Shop) => {
+    Swal.fire({
+        title: `<strong><u>${shop.name}</u></strong>`,
+        icon: "info",
+        html: `
+        <p><strong>Correo:</strong> ${shop.email}</p>
+        <p><strong>Teléfono:</strong> ${shop.phone}</p>
+        <p><strong>Descripción:</strong> ${shop.description}</p>
+        <p><strong>Dirección:</strong> ${shop.address + ' - ' + shop.city + ' - ' + shop.province  + ' - ' + shop.country}</p>
+        `,
+        focusConfirm: false,
+        confirmButtonText: `
+          <i class="fa fa-thumbs-up"></i> Genial!
+        `
+    });
 }

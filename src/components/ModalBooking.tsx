@@ -27,7 +27,7 @@ const formValuesInitialState = {
     price: 5000,
     bgColor: 'darkgreen',
     desc: '',
-    title: '',
+    shop: '',
     start: toTenAm,
     name: '',
     service: {
@@ -59,7 +59,7 @@ const customStyles = {
 export const ModalBooking = ({modalIsOpen, setIsOpen}: PropsModal) => {
 
     const {availabilityState: { selected }, updateAvailability, dispatch } = useContext(AvailabilityContext);
-    const { shopState:{ services, name } } = useContext(ShopContext);
+    const { shopState:{ services, name, id } } = useContext(ShopContext);
     const { bookingState, newBooking, dispatchBooking } = useContext(BookingContext)
     const [ isUpdating, setIsUpdating ] = useState(false);
     const [formValues, setFormValues] = useState<any>(formValuesInitialState);
@@ -83,6 +83,7 @@ export const ModalBooking = ({modalIsOpen, setIsOpen}: PropsModal) => {
             price: service?.price || formValues.price
         })
     }
+
     const handleSave = () => {
         setTrySend(true)
         if(
@@ -99,7 +100,7 @@ export const ModalBooking = ({modalIsOpen, setIsOpen}: PropsModal) => {
                 }
                 setIsUpdating(false);
             } else {
-                const newReserve = formValuesFormated({...formValues, title: name}, 'new' );
+                const newReserve = formValuesFormated({...formValues, shop: id}, 'new' );
                 newBooking(newReserve, dispatchBooking);
             }
             setFormValues(formValuesInitialState)
@@ -127,7 +128,7 @@ export const ModalBooking = ({modalIsOpen, setIsOpen}: PropsModal) => {
             const data = {
                 ...formValues,
                 id: selected?.id || bookingState.selected?.id,
-                title: name, // NOMBRE DEL LOCAL
+                shop: id, // NOMBRE DEL LOCAL
                 price: selected?.price || bookingState.selected?.price,
                 start: selected?.start || bookingState.selected?.start || new Date(),
                 name: selected?.user?.name || bookingState.selected?.user?.name || ' - ',
