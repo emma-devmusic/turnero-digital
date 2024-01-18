@@ -80,6 +80,21 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
 .hr {
     width: 100%;
 }
+/* 
+================================================================================
+STEP ONE
+================================================================================
+*/
+
+#locales {
+    gap: 1rem
+}
+
+
+#cardShopData img {
+    height: 180px;
+    object-fit: cover;
+}
 
 
 /* 
@@ -155,4 +170,21 @@ STEP RESUME
     background-color: white;
     padding: 1rem;
     margin: -1rem;
+}
+
+#cardShopDataInfo img {
+    height: 130px;
+    width: 130px;
+    object-fit: cover;
+    margin: 1rem 0;
+    border: 1px solid lightgray;
+    border-radius: 100%;
+}
+
+#swal2-html-container {
+    margin: 0 1rem;
+}
+
+#swal2-title {
+    padding: .2rem;
 }

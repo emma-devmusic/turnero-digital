@@ -227,15 +227,21 @@ export const formValidate = (form:any) => {
 
 
 
+
 export const showShopInfo = (shop: Shop) => {
     Swal.fire({
         title: `<strong><u>${shop.name}</u></strong>`,
         icon: "info",
         html: `
-        <p><strong>Correo:</strong> ${shop.email}</p>
-        <p><strong>Teléfono:</strong> ${shop.phone}</p>
-        <p><strong>Descripción:</strong> ${shop.description}</p>
-        <p><strong>Dirección:</strong> ${shop.address + ' - ' + shop.city + ' - ' + shop.province  + ' - ' + shop.country}</p>
+            <div className="card" id="cardShopDataInfo">
+                <img src="${shop.img}" className="card-img-top"  alt="Imagen del negocio"/>
+                <div className="card-body">
+                    <p><strong>Correo:</strong> ${shop.email}</p>
+                    <p><strong>Teléfono:</strong> ${shop.phone}</p>
+                    <p><strong>Descripción:</strong> ${shop.description}</p>
+                    <p><strong>Dirección:</strong> ${shop.address + ' - ' + shop.city + ' - ' + shop.province  + ' - ' + shop.country}</p>
+                </div>
+            </div>    
         `,
         focusConfirm: false,
         confirmButtonText: `

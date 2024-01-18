@@ -2,6 +2,7 @@
     "locales": [
         {
             "id": "123456789",
+            "img": "/assets/img/1.png",
             "bookingPerHour": 3,
             "name": "Estética",
             "description": "Descripción del centro de estética Estética",
@@ -194,6 +195,7 @@
         },
         {
             "id": "987654321",
+            "img": "/assets/img/2.png",
             "bookingPerHour": 2,
             "name": "Peluquería",
             "description": "Descripción del centro de Peluquería",
@@ -291,6 +293,7 @@
         },
         {
             "id": "126437859",
+            "img": "/assets/img/3.png",
             "bookingPerHour": 3,
             "name": "Odontólogo",
             "description": "Descripción del centro de Odontología",
@@ -385,6 +388,7 @@
         },
         {
             "id": "1264378478",
+            "img": "/assets/img/4.png",
             "bookingPerHour": 2,
             "name": "Barbero",
             "description": "Descripción del centro de Barbería",
