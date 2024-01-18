@@ -11,6 +11,7 @@ import { DatePickerBooking } from "./DatePickerBooking";
 import { ErrorsMsgForm } from './ErrorsMsgForm';
 import "react-datepicker/dist/react-datepicker.css";
 import Swal from "sweetalert2";
+import { UiContext } from "../context/UiContext";
 
 type PropsModal = { 
     modalIsOpen: boolean; 
@@ -56,15 +57,16 @@ const customStyles = {
         padding: '.5rem'
     },
 };
-export const ModalBooking = ({modalIsOpen, setIsOpen}: PropsModal) => {
+export const ModalBooking = () => {
 
+    const { uiState, setModalOpen } = useContext(UiContext);
     const {availabilityState: { selected }, updateAvailability, dispatch } = useContext(AvailabilityContext);
     const { shopState:{ services, name, id } } = useContext(ShopContext);
-    const { bookingState, newBooking, dispatchBooking } = useContext(BookingContext)
+    const { bookingState, newBooking, dispatchBooking } = useContext(BookingContext);
     const [ isUpdating, setIsUpdating ] = useState(false);
     const [formValues, setFormValues] = useState<any>(formValuesInitialState);
     const [isInvalid, setIsInvalid] = useState('');
-    const [trySend, setTrySend] = useState(false)
+    const [trySend, setTrySend] = useState(false);
 
     const onDateChanged = (event: any, changing: any) => {
         setFormValues({
@@ -149,127 +151,130 @@ export const ModalBooking = ({modalIsOpen, setIsOpen}: PropsModal) => {
     },[selected, bookingState.selected])
 
     const closeModal = () => {
+        setModalOpen({
+            isOpen: false,
+            for: ''
+        })
         setTrySend(false)
-        setIsOpen(false)
         setIsInvalid('');
     };
+
     Modal.setAppElement('#root')
 
     return (
         <>
             <Modal
-                isOpen={modalIsOpen}
+                isOpen={uiState.modal.isOpen}
                 onRequestClose={closeModal}
                 style={customStyles}
             >
-                
-                    <div className="modal-header">
-                        <h5 className="modal-title" id="exampleModalLongTitle">{ (selected || bookingState.selected) ? 'Actualizar' : 'Nueva' } reserva en {name}</h5>
-                        <button type="button" className="close" data-dismiss="modal" onClick={closeModal}>
-                        <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div className="modal-body">
-                        <form className="container">
+                <div className="modal-header">
+                    <h5 className="modal-title" id="exampleModalLongTitle">{ (selected || bookingState.selected) ? 'Actualizar' : 'Nueva' } reserva en {name}</h5>
+                    <button type="button" className="close" data-dismiss="modal" onClick={closeModal}>
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div className="modal-body">
+                    <form className="container">
 
-                            <div className="input-group mb-3">
-                                <div className="input-group-prepend">
-                                    <label className="input-group-text" htmlFor="inputGroupSelect01">Selecciona el Servicio</label>
-                                </div>
-                                <select 
-                                    name='service' 
-                                    onChange={onInputChanged} 
-                                    className="custom-select" 
-                                    id="inputGroupSelect01"
+                        <div className="input-group mb-3">
+                            <div className="input-group-prepend">
+                                <label className="input-group-text" htmlFor="inputGroupSelect01">Selecciona el Servicio</label>
+                            </div>
+                            <select 
+                                name='service' 
+                                onChange={onInputChanged} 
+                                className="custom-select" 
+                                id="inputGroupSelect01"
+                            >
+                                <option 
+                                    defaultValue={selected?.service?.id || bookingState.selected?.id || formValues.service.id}
                                 >
-                                    <option 
-                                        defaultValue={selected?.service?.id || bookingState.selected?.id || formValues.service.id}
-                                    >
-                                        {selected?.service?.name || bookingState.selected?.name || formValues.service.name}
-                                    </option>
-                                    {
-                                        services.map( (e,i) => 
-                                            <option 
-                                                value={e.id} 
-                                                key={i}
-                                            >
-                                                {e.name}
-                                            </option>
-                                        )
-                                    }
-                                </select>
-                            </div>
-                            <div className="input-group mb-3">
-                                <input 
-                                    id='price'
-                                    type="text" 
-                                    className="form-control"
-                                    placeholder="Nombre de quién reserva"
-                                    name="price"
-                                    autoComplete="off"
-                                    value={formValues.price}
-                                    disabled
-                                    onChange={onInputChanged}
-                                />
-                            </div>
-                            <div className="form-group mb-2">
-                                <label>Nombre</label>
-                                <input 
-                                    type="text" 
-                                    className="form-control"
-                                    placeholder="Nombre y Apellido de quién reserva"
-                                    name="name"
-                                    autoComplete="off"
-                                    value={formValues.name}
-                                    onChange={onInputChanged}
-                                />
-                            </div>
-                            <div className="form-group mb-2">
-                                <label>Detalles</label>
-                                <textarea  
-                                    className="form-control"
-                                    placeholder="Algunos detalles que quieras agregar"
-                                    name="desc"
-                                    autoComplete="off"
-                                    value={formValues.desc}
-                                    onChange={onInputChanged}
-                                />
-                            </div>
-                            {
-                               trySend && formValidate(formValues).map( (msg, i) => <ErrorsMsgForm text={msg} key={i} />)
-                            }
-                            <hr />
-                            <DatePickerBooking 
-                                durationService={formValues.service.duration }
-                                formValues={ formValues } 
-                                onDateChanged={ onDateChanged } 
-                                isInvalid={ isInvalid }
-                                setIsInvalid={ setIsInvalid }
+                                    {selected?.service?.name || bookingState.selected?.name || formValues.service.name}
+                                </option>
+                                {
+                                    services.map( (e,i) => 
+                                        <option 
+                                            value={e.id} 
+                                            key={i}
+                                        >
+                                            {e.name}
+                                        </option>
+                                    )
+                                }
+                            </select>
+                        </div>
+                        <div className="input-group mb-3">
+                            <input 
+                                id='price'
+                                type="text" 
+                                className="form-control"
+                                placeholder="Nombre de quién reserva"
+                                name="price"
+                                autoComplete="off"
+                                value={formValues.price}
+                                disabled
+                                onChange={onInputChanged}
                             />
-                            <div className="form-group mb-2">
-                                <label className='d-block'>Fecha y hora fin</label>
-                                <DatePicker 
-                                    disabled
-                                    className={'form-control d-block ' + isInvalid}
-                                    selected={ formValues.end } 
-                                    onChange={(event: any) => onDateChanged(event, 'end')} 
-                                    dateFormat={'Pp'}
-                                    locale={'es'}
-                                    placeholderText=" - "
-                                />  
-                            </div>
-                        </form>
-                    </div>
-                    <div className="modal-footer">
-                        <button className="btn btn-secondary" onClick={closeModal}>Cerrar</button>
-                        <button 
-                            className="btn btn-primary" 
-                            onClick={handleSave}
-                            disabled={!!isInvalid}
-                        >
-                            { selected ? 'Actualizar Reserva' : 'Reservar' }
-                        </button>
-                    </div>
+                        </div>
+                        <div className="form-group mb-2">
+                            <label>Nombre</label>
+                            <input 
+                                type="text" 
+                                className="form-control"
+                                placeholder="Nombre y Apellido de quién reserva"
+                                name="name"
+                                autoComplete="off"
+                                value={formValues.name}
+                                onChange={onInputChanged}
+                            />
+                        </div>
+                        <div className="form-group mb-2">
+                            <label>Detalles</label>
+                            <textarea  
+                                className="form-control"
+                                placeholder="Algunos detalles que quieras agregar"
+                                name="desc"
+                                autoComplete="off"
+                                value={formValues.desc}
+                                onChange={onInputChanged}
+                            />
+                        </div>
+                        {
+                            trySend && formValidate(formValues).map( (msg, i) => <ErrorsMsgForm text={msg} key={i} />)
+                        }
+                        <hr />
+                        <DatePickerBooking 
+                            durationService={formValues.service.duration }
+                            formValues={ formValues } 
+                            onDateChanged={ onDateChanged } 
+                            isInvalid={ isInvalid }
+                            setIsInvalid={ setIsInvalid }
+                        />
+                        <div className="form-group mb-2">
+                            <label className='d-block'>Fecha y hora fin</label>
+                            <DatePicker 
+                                disabled
+                                className={'form-control d-block ' + isInvalid}
+                                selected={ formValues.end } 
+                                onChange={(event: any) => onDateChanged(event, 'end')} 
+                                dateFormat={'Pp'}
+                                locale={'es'}
+                                placeholderText=" - "
+                            />  
+                        </div>
+                    </form>
+                </div>
+                <div className="modal-footer">
+                    <button className="btn btn-secondary" onClick={closeModal}>Cerrar</button>
+                    <button 
+                        className="btn btn-primary" 
+                        onClick={handleSave}
+                        disabled={!!isInvalid}
+                    >
+                        { selected ? 'Actualizar Reserva' : 'Reservar' }
+                    </button>
+                </div>
             </Modal>
         </>
     )

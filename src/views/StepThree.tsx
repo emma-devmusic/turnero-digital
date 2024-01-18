@@ -45,7 +45,7 @@ export const StepThree = () => {
             <div className="hide" id="view-3">
                 {
                     !(booking.length > 0 && shopState.selected) 
-                    ? <h3 className="text-center text-alternative-2 font-weight-normal">Debe completar el paso anterior</h3>
+                    ? <h3 className="text-center text-alternative-2 font-weight-normal">No tienes reservas.</h3>
                     : <div id="ocultar-2">
                         <h2 className="text-center mb-2 font-weight-normal">Coloca tus datos</h2>
                         <hr/>

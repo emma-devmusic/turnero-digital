@@ -2,20 +2,23 @@ import ReactDOM from 'react-dom/client'
 import { RouterProvider } from 'react-router-dom';
 import { AuthProvider } from "./context/AuthContext.tsx";
 import { router } from './routes/routes.tsx';
-import './css/style.css';
 import { ShopProvider } from './context/ShopContext.tsx';
 import { BookingProvider } from './context/BookingContext.tsx';
+import { UiProvider } from './context/UiContext.tsx';
+import './css/style.css';
 
 
 const ContextProvider = ({children}: any) => {
     return (
-      <AuthProvider>
-        <ShopProvider>
-          <BookingProvider>
-            {children}
-          </BookingProvider>
-        </ShopProvider>
-      </AuthProvider> 
+      <UiProvider>
+        <AuthProvider>
+          <ShopProvider>
+            <BookingProvider>
+              {children}
+            </BookingProvider>
+          </ShopProvider>
+        </AuthProvider> 
+      </UiProvider>
     )
 }
 

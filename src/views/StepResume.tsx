@@ -1,9 +1,8 @@
 import { useContext, useEffect, useState } from "react"
 import { BookingCard } from "../components/resume/BookingCard"
 import { BookingContext } from "../context/BookingContext"
-import { Shop, ShopContext } from "../context"
+import { ShopContext } from "../context"
 import { ContactCard } from "../components/resume/ContactCard"
-import { getShopByID } from "../gettersDB/getShops"
 
 
 export const StepResume = () => {
@@ -23,14 +22,12 @@ export const StepResume = () => {
     },[booking])
 
 
-
-
     return (
         <>
             <div className="stepResume" id="view-3">
                 {
                     (!(booking.length > 0) || !localStorage.getItem('contactInfo') || !shopState.name) 
-                    ? <h3 className="text-center text-alternative-2 font-weight-normal w-100">Debe completar el paso anterior</h3>
+                    ? <h3 className="text-center text-alternative-2 font-weight-normal w-100">No tienes reservas.</h3>
                     : 
                     <>
                         <ContactCard />

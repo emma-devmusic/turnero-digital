@@ -51,6 +51,10 @@
     display: none !important;
 }
 
+.step-selected {
+    background-color: #003267e2;
+    color: white;
+}
 
 .selected {
     background-color: #004a99;
@@ -69,17 +73,13 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
 }
 
 
-#view-3 form{
-    max-width: 500px;
-}
-
-.step-on {
-    background-color: #004186;
-}
-
 .hr {
     width: 100%;
 }
+
+
+
+
 /* 
 ================================================================================
 STEP ONE
@@ -103,6 +103,20 @@ STEP ONE
     text-align: center;
     color: rgb(87, 87, 87);
 }
+
+
+
+
+/* 
+================================================================================
+STEP THREE
+================================================================================
+*/
+
+#view-3 form{
+    max-width: 500px;
+}
+
 
 /* 
 ================================================================================
@@ -174,7 +188,10 @@ STEP RESUME
 .stepResume-bookings .card  .card-title {
     position: sticky;
     top: 0;
-    background-color: white;
+    /* background-color: white; */
+    background: rgb(255,255,255);
+    background: linear-gradient(180deg, rgba(255,255,255,1) 86%, rgba(255, 255, 255, 0.289) 100%);
+    /* box-shadow: 0px 0px 10px 5px rgb(255, 255, 255); */
     padding: 1rem;
     margin: -1rem;
 }

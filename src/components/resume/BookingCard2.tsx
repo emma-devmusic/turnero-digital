@@ -4,6 +4,9 @@ import { registerLocale } from "react-datepicker";
 import { es } from "date-fns/locale";
 import { firstUppercase } from "../../helpers";
 import Swal from "sweetalert2";
+import { useContext } from "react";
+import { UiContext } from "../../context/UiContext";
+import { BookingContext } from "../../context/BookingContext";
 
 type PropBookingCard = {
   data: ShopAvailability,
@@ -14,6 +17,10 @@ registerLocale('es', es);
 
 export const BookingCard2 = ({data}:PropBookingCard) => {
 
+
+    const { setModalOpen } = useContext(UiContext)
+    const { bookingState , selectBooking, dispatchBooking, deleteBooking, unselectBooking } = useContext(BookingContext)
+
     const dateStart = new Date(data.start || 0);
     const dateEnd = new Date(data.end || 0);
     const day = format(dateStart, "EEEE dd 'de' LLLL 'de' yyyy", {locale: es})
@@ -21,9 +28,37 @@ export const BookingCard2 = ({data}:PropBookingCard) => {
     const timeEnd = format(dateEnd, "HH:mm");
 
     const handleClickEdit = () => {
-        console.log(data)
-        Swal.fire()
+        selectBooking(data, dispatchBooking)
+        setModalOpen({
+            for: 'from-resume',
+            isOpen: true
+        })
     }
+
+    const handleDelete = () => {
+        Swal.fire({
+          title: "¿Estás seguro de eliminar el registro?",
+          text: "La acción no puede deshacerse",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "grey",
+          confirmButtonText: "Si, borrar",
+          cancelButtonText: 'No, cancelar'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            if( bookingState.selected) {
+              deleteBooking(bookingState.selected, dispatchBooking);
+              unselectBooking(bookingState.selected, dispatchBooking)
+            }
+            Swal.fire({
+              title: "¡Eliminado!",
+              text: "Registro eliminado con éxito.",
+              icon: "success"
+            });
+          }
+        });
+      }
 
     return (
         <>
@@ -39,6 +74,8 @@ export const BookingCard2 = ({data}:PropBookingCard) => {
                         <br />
                         <span>De </span><strong>{timeStart}</strong><span>a </span><strong>{timeEnd}</strong>
                         <br />
+                        <strong><i>Para:</i></strong> <i>{data?.user?.name}</i>
+                        <br />
                         <strong>Notas: </strong>{data.desc}
                     </p>
                 </div>
@@ -53,6 +90,7 @@ export const BookingCard2 = ({data}:PropBookingCard) => {
                         Editar
                     </button>
                     <button 
+                        onClick={handleDelete}
                         className="btn btn-outline-danger mt-2 btn-sm" 
                     >
                         Eliminar

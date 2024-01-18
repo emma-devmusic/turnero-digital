@@ -5,7 +5,7 @@ import { uiInitialState, uiReducer } from "./reducers/uiReducer";
 
 export const UiContext = createContext<UiContextProps>({} as UiContextProps)
 
-export const UiProvider:FC = ({children}:any) => {
+export const UiProvider = ({children}:any) => {
 
     const [uiState, dispatch] = useReducer(uiReducer, uiInitialState)
 

@@ -5,11 +5,11 @@ import { getMessagesEs, localizer, eventStyleGetter } from '../calendarConf';
 import { AvailabilityContext, ShopContext } from '../context';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { BookingContext } from '../context/BookingContext';
-import { ModalBooking } from '../components/ModalBooking';
 import withDragAndDrop from 'react-big-calendar/lib/addons/dragAndDrop';
 import Swal from 'sweetalert2';
 import 'react-big-calendar/lib/addons/dragAndDrop/styles.css';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
+import { UiContext } from '../context/UiContext';
 
 
 //@ts-ignore
@@ -17,8 +17,7 @@ const DnDCalendar = withDragAndDrop(Calendar);
 
 export const StepTwo: FC = () => {
 
-
-  const [modalIsOpen, setIsOpen] = useState(false);
+  const { setModalOpen } = useContext(UiContext)
   const { shopState } = useContext(ShopContext)
   const { bookingState, selectBooking, dispatchBooking, unselectBooking, deleteBooking } = useContext(BookingContext)
   const { 
@@ -29,11 +28,11 @@ export const StepTwo: FC = () => {
     dispatch, 
   } = useContext(AvailabilityContext)
 
+
   const navigate = useNavigate()
 
   const stateBookingInCorrectShop = () => {
     const toAdd = bookingState.booking.filter( b => b.shop === shopState.id)
-    console.log(bookingState.booking)
     return [...availabilities, ...toAdd]
   }
 
@@ -45,7 +44,6 @@ export const StepTwo: FC = () => {
   }
 
   const onSelect = (event: Event) => {
-    console.log(event)
     if(event.bgColor === 'darkgreen') {
       unselectReserve(dispatch)
       selectBooking(event, dispatchBooking)
@@ -63,11 +61,17 @@ export const StepTwo: FC = () => {
   const handleNewReserve = () => {
     unselectReserve(dispatch)
     unselectBooking({}, dispatchBooking);
-    setIsOpen(true)
+    setModalOpen({
+      isOpen: true,
+      for: 'from-calendar'
+    })
   }
 
   const handleEditClick = () => {
-    setIsOpen(true)
+    setModalOpen({
+      isOpen: true,
+      for: 'from-calendar'
+    })
   }
 
   const handleDelete = () => {
@@ -109,7 +113,7 @@ export const StepTwo: FC = () => {
     navigate('/turnero/step-three')
   }
 
-  if(!shopState.selected) return <h3 className="text-center text-alternative-2 font-weight-normal">Debe completar el paso anterior</h3>
+  if(!shopState.selected) return <h3 className="text-center text-alternative-2 font-weight-normal">Debes seleccionar un local.</h3>
 
   return (
     <div className='bg-white rounded p-3'>
@@ -118,7 +122,7 @@ export const StepTwo: FC = () => {
         defaultView={lastView}
         events={events}
         localizer={localizer}
-        style={{ height: '70vh' }}
+        style={{ height: '63vh' }}
         components={{
           event: CalendarEvent
         }}
@@ -131,7 +135,6 @@ export const StepTwo: FC = () => {
       />
       <div className='d-flex justify-content-between'>
         <div>
-          <ModalBooking modalIsOpen={modalIsOpen} setIsOpen={setIsOpen} />
           <button className="btn btn-primary mt-2 mr-2" onClick={handleNewReserve} id="buttonOpenModal">Nuevo Turno</button>
           {
             (selected || bookingState.selected) && 
