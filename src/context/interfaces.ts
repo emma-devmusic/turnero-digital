@@ -3,7 +3,7 @@ import { ShopAvailabilityAction } from ".";
 import { BookingAction } from "./reducers/bookingReducer";
 
 export type idReserve = string | number;
-
+export type ModalTypes = { isOpen: boolean, for: '' | 'from-resume' | 'from-calendar' }
 
 // AuthContext
 export interface AuthState {
@@ -18,6 +18,17 @@ export interface AuthContxtProps {
     authState: AuthState;
     login: (user: AuthState) => void;
     logout: () => void;
+}
+
+export interface UiState {
+    modal: ModalTypes,
+    isLoading: boolean
+}
+
+export interface UiContextProps {
+    uiState: UiState,
+    setLoading: (isLoading: 'is-loading' | 'isnt-loading') => void;
+    setModalOpen: (modalType: ModalTypes) => void;
 }
 
 export interface ShopAvailability {
