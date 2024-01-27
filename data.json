@@ -2,7 +2,7 @@
     "locales": [
         {
             "id": "123456789",
-            "img": "/assets/img/1.png",
+            "img": "/assets/img/shops/1.png",
             "bookingPerHour": 3,
             "name": "Estética",
             "description": "Descripción del centro de estética Estética",
@@ -195,7 +195,7 @@
         },
         {
             "id": "987654321",
-            "img": "/assets/img/2.png",
+            "img": "/assets/img/shops/2.png",
             "bookingPerHour": 2,
             "name": "Peluquería",
             "description": "Descripción del centro de Peluquería",
@@ -293,7 +293,7 @@
         },
         {
             "id": "126437859",
-            "img": "/assets/img/3.png",
+            "img": "/assets/img/shops/3.png",
             "bookingPerHour": 3,
             "name": "Odontólogo",
             "description": "Descripción del centro de Odontología",
@@ -388,7 +388,7 @@
         },
         {
             "id": "1264378478",
-            "img": "/assets/img/4.png",
+            "img": "/assets/img/shops/4.png",
             "bookingPerHour": 2,
             "name": "Barbero",
             "description": "Descripción del centro de Barbería",
@@ -487,13 +487,121 @@
             "id": "123456",
             "name": "Fulano de Tal",
             "email": "fulanodetal@correo.com",
-            "password": "123456"
+            "password": "123456",
+            "photo": "/assets/img/users/fulanodetal.png",
+            "phone": "3731455614",
+            "bookings": [
+                {
+                    "bgColor": "#2778c4",
+                    "id": "123451932",
+                    "shop": "123456789",
+                    "price": 7000,
+                    "start": "Fri Jan 12 2024 19:00:00 GMT-0300 (hora estándar de Argentina)",
+                    "end": "Fri Jan 12 2024 20:00:00 GMT-0300 (hora estándar de Argentina)",
+                    "desc": "Necesito desocuparme rapido",
+                    "service": {
+                        "id": "1234twexcvbssd",
+                        "name": "Servicio 3",
+                        "duration": 2,
+                        "price": 7000
+                    },
+                    "done": false,
+                    "assist": false
+                },
+                {
+                    "bgColor": "#2778c4",
+                    "id": "1451hfgh9342",
+                    "shop": "123456789",
+                    "price": 6000,
+                    "start": "Mon Jan 15 2024 14:00:00 GMT-0300 (hora estándar de Argentina)",
+                    "end": "Mon Jan 15 2024 16:00:00 GMT-0300 (hora estándar de Argentina)",
+                    "service": {
+                        "id": "1234twexcvbsd",
+                        "name": "Servicio 2",
+                        "duration": 2,
+                        "price": 6000
+                    },
+                    "done": false,
+                    "assist": false
+                },
+                {
+                    "id": "123451932",
+                    "shop": "1264378478",
+                    "start": "Tue Dec 12 2023 19:00:00 GMT-0300 (hora estándar de Argentina)",
+                    "end": "Tue Dec 12 2023 20:00:00 GMT-0300 (hora estándar de Argentina)",
+                    "service": {
+                        "id": "1234twsde",
+                        "name": "Servicio 1",
+                        "duration": 2,
+                    "price": 5000
+                    },
+                    "user": {
+                        "id": "No Registrado",
+                        "name": "Usuario 1",
+                        "phone": 3731455614,
+                        "email": "correo@correodelusuario.com"
+                    },
+                    "done": true,
+                    "assist": true
+                }
+            ]
         },
         {
             "id": "456789",
             "name": "Otro Fulano",
             "email": "otrofulano@correo.com",
-            "password": "123456"
+            "password": "123456",
+            "photo": "/assets/img/users/fulanodetal.png",
+            "phone": "3731455614",
+            "bookings": [
+                {
+                    "bgColor": "#2778c4",
+                    "id": "123451932",
+                    "shop": "123456789",
+                    "price": 7000,
+                    "start": "Fri Jan 12 2024 19:00:00 GMT-0300 (hora estándar de Argentina)",
+                    "end": "Fri Jan 12 2024 20:00:00 GMT-0300 (hora estándar de Argentina)",
+                    "desc": "Necesito desocuparme rapido",
+                    "service": {
+                        "id": "1234twexcvbssd",
+                        "name": "Servicio 3",
+                        "duration": 2,
+                        "price": 7000
+                    },
+                    "done": false,
+                    "assist": false
+                },
+                {
+                    "bgColor": "#2778c4",
+                    "id": "1451hfgh9342",
+                    "shop": "123456789",
+                    "price": 6000,
+                    "start": "Mon Jan 15 2024 14:00:00 GMT-0300 (hora estándar de Argentina)",
+                    "end": "Mon Jan 15 2024 16:00:00 GMT-0300 (hora estándar de Argentina)",
+                    "service": {
+                        "id": "1234twexcvbsd",
+                        "name": "Servicio 2",
+                        "duration": 2,
+                        "price": 6000
+                    },
+                    "done": false,
+                    "assist": false
+                },
+                {
+                    "id": "123451932",
+                    "shop": "1264378478",
+                    "start": "Tue Dec 12 2023 19:00:00 GMT-0300 (hora estándar de Argentina)",
+                    "end": "Tue Dec 12 2023 20:00:00 GMT-0300 (hora estándar de Argentina)",
+                    "service": {
+                        "id": "1234twsde",
+                        "name": "Servicio 1",
+                        "duration": 2,
+                        "price": 5000
+                    },
+                    "done": true,
+                    "assist": true
+                }
+            ]
         }
     ]
 }

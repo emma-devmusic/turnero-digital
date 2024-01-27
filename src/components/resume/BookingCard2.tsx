@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 import { useContext } from "react";
 import { UiContext } from "../../context/UiContext";
 import { BookingContext } from "../../context/BookingContext";
+import { useLocation } from "react-router-dom";
 
 type PropBookingCard = {
   data: ShopAvailability,
@@ -17,6 +18,7 @@ registerLocale('es', es);
 
 export const BookingCard2 = ({data}:PropBookingCard) => {
 
+    const location = useLocation();
 
     const { setModalOpen } = useContext(UiContext)
     const { bookingState , selectBooking, dispatchBooking, deleteBooking, unselectBooking } = useContext(BookingContext)
@@ -59,7 +61,7 @@ export const BookingCard2 = ({data}:PropBookingCard) => {
           }
         });
       }
-
+      console.log(location.pathname)
     return (
         <>
             <hr />
@@ -68,7 +70,7 @@ export const BookingCard2 = ({data}:PropBookingCard) => {
                     <h6 className="card-subtitle mb-2">{data.service?.name}</h6>
                     <p className="card-text">
                         <strong>Precio: </strong> 
-                        <i>${data.price}</i>
+                        <i>${data.service?.price}</i>
                         <br />
                         <strong>Fecha:</strong> <span>{firstUppercase(day)}</span>
                         <br />
@@ -79,23 +81,26 @@ export const BookingCard2 = ({data}:PropBookingCard) => {
                         <strong>Notas: </strong>{data.desc}
                     </p>
                 </div>
-                <div className="d-flex flex-column">
-                    <button className="btn btn-outline-success btn-sm">
-                        Pago Individual
-                    </button>
-                    <button 
-                        className="btn btn-outline-primary mt-2 btn-sm" 
-                        onClick={handleClickEdit}  
-                    >
-                        Editar
-                    </button>
-                    <button 
-                        onClick={handleDelete}
-                        className="btn btn-outline-danger mt-2 btn-sm" 
-                    >
-                        Eliminar
-                    </button>
-                </div>
+                {
+                    location.pathname === '/turnero/step-resume' &&
+                    <div className="d-flex flex-column">
+                        <button className="btn btn-outline-success btn-sm">
+                            Pago Individual
+                        </button>
+                        <button 
+                            className="btn btn-outline-primary mt-2 btn-sm" 
+                            onClick={handleClickEdit}  
+                        >
+                            Editar
+                        </button>
+                        <button 
+                            onClick={handleDelete}
+                            className="btn btn-outline-danger mt-2 btn-sm" 
+                        >
+                            Eliminar
+                        </button>
+                    </div>
+                }
             </div>
         </>
     )

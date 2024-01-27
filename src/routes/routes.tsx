@@ -9,8 +9,8 @@ import { StepTwo } from '../views/StepTwo.tsx';
 import { StepThree } from '../views/StepThree.tsx';
 import { StepResume } from '../views/StepResume.tsx';
 import { Profile } from '../views/Profile.tsx';
-import { Journal } from '../views/Journal.tsx';
 import { Panel } from '../views/Panel.tsx';
+import { Record } from '../views/Record.tsx';
 
 export const router = createBrowserRouter([
     {
@@ -52,7 +52,7 @@ export const router = createBrowserRouter([
             },
             {
               path: 'journal',
-              element: <Journal />
+              element: <Record />
             },
             {
               path: 'panel',

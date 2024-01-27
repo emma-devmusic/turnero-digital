@@ -1,3 +1,4 @@
+import { AuthBooking } from "../context"
 
 type DataLoginForm = {
     email: string,
@@ -9,7 +10,9 @@ type UserDB = {
     email: string,
     name: string,
     password: string,
-    phone?: number
+    phone?: number,
+    photo?: string,
+    bookings?: AuthBooking[]
 }
 
 

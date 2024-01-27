@@ -5,13 +5,32 @@ import { BookingAction } from "./reducers/bookingReducer";
 export type idReserve = string | number;
 export type ModalTypes = { isOpen: boolean, for: '' | 'from-resume' | 'from-calendar' }
 
+
+
+export interface AuthBooking {
+    bgColor?: string,
+    id?: string | number,
+    shop: string,
+    price?: number,
+    start?: string,
+    end?: string,
+    desc?: string,
+    service?: ShopServices,
+    done?: boolean,
+    assist?: boolean,
+    user?: { id: string | number , name: string };
+}
+
+
 // AuthContext
 export interface AuthState {
     uid?: string,
     userName?: string,
     userEmail?: string,
     userPhone?: number,
-    isLogged: boolean
+    isLogged: boolean,
+    userPhoto?: string,
+    userBookings?: AuthBooking[]
 }
 
 export interface AuthContxtProps {

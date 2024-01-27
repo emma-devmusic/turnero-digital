@@ -7,6 +7,7 @@ import { BookingCard2 } from "./BookingCard2";
 import { Shop } from '../../context/interfaces';
 import { getShopByID } from "../../gettersDB/getShops";
 import { showShopInfo } from "../../helpers";
+import { useLocation } from "react-router-dom";
 
 type PropBookingCard = {
   shopId: string,
@@ -16,7 +17,8 @@ type PropBookingCard = {
 registerLocale('es', es);
 
 export const BookingCard = ({shopId}:PropBookingCard) => {
-
+  
+  const location = useLocation();
   const { bookingState: { booking } } = useContext(BookingContext)
   const [shop, setShop] = useState({} as Shop)
 
@@ -51,7 +53,10 @@ export const BookingCard = ({shopId}:PropBookingCard) => {
               }
           </div>
       </div>
-      <button className="btn btn-success btn-sm mt-1">Pago Total</button>
+      {
+        (location.pathname === '/turnero/step-resumen') &&
+        <button className="btn btn-success btn-sm mt-1">Pago Total</button>
+      }
     </div>
   )
 }

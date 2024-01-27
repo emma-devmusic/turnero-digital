@@ -3,6 +3,7 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { getUserDB } from "../gettersDB/getUser";
 import Swal from "sweetalert2";
+import { AuthState } from "../context";
 
 export const Login = () => {
     
@@ -24,11 +25,13 @@ export const Login = () => {
         e.preventDefault();
         const { flag, userLogin } = await getUserDB(loginForm);
         if(flag) {
-            let user = {
+            let user:AuthState = {
                 isLogged: flag,
                 userEmail: userLogin.email,
                 userName: userLogin.name,
-                userPhone: 3731455146
+                userPhone: 3731455146,
+                userPhoto: userLogin.photo,
+                userBookings: userLogin.bookings
             }
             login(user)
             navigate("/turnero/profile");
